@@ -13,7 +13,7 @@ class FacetProfileListener extends ContainerAware
         $twig = $this->container->get('templating');
         $vue=$twig->render('ImaviaFacetProfileBundle::HelloWorld.html.twig');
         $event->setContent($vue);
-        $event->setContent("toto");
+        $event->setContent("titi");
     }
 }
 
