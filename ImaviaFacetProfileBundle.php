@@ -6,8 +6,7 @@ use Claroline\CoreBundle\Library\PluginBundle;
 
 class ImaviaFacetProfileBundle extends PluginBundle 
 {
-   
- 
+  
 }
 
 ?>
