@@ -1,0 +1,8 @@
+services: 
+  imavia.listener.FacetProfileListener: 
+    class: Imavia\FacetProfileBundle\Listener\FacetProfileListener
+    calls: 
+      - [setContainer, ["@service_container"]]
+    tags:
+       - { name: kernel.event_listener, event: hello_world_imavia, method: onStartUp }
+      
