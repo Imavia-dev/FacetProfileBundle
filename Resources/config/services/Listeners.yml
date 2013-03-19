@@ -4,5 +4,5 @@ services:
     calls: 
       - [setContainer, ["@service_container"]]
     tags:
-       - { name: kernel.event_listener, event: hello_world_imavia, method: onStartUp }
+       - { name: kernel.event_listener, event: open_tool_desktop_Imavia, method: onStartUp }
       
