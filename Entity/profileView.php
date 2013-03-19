@@ -15,24 +15,25 @@ abstract class profileView {
     
     protected $id ;
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text",name="description")
      */
     protected  $Description ; 
     /**
-     * @ORM\Column(type="string",length=255)
+     * @ORM\Column(type="string",length=255,name="name")
      */
     protected $Name; 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime",name="creationdate")
      */
     protected  $creationDate ; 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime",name="lastmodificationdate")
      */
     protected $lastModificationDate ;
     
      /**
      * @ORM\ManyToOne(targetEntity="Imavia\FacetProfileBundle\Entity\userComment")
+     * @ORM\Column(name="comments")
      */
      protected $Comments ;
     

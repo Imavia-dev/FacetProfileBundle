@@ -16,11 +16,11 @@ class userComment
      */
     protected $id;
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text",name="commentcontent")
      */
     protected $commentContent; 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime",name="emissiondate")
      */
     protected $emissionDate; 
    

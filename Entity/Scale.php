@@ -25,11 +25,11 @@ class Scale
      */
     protected $date; 
     /**
-     * @ORM\Column(type="integer",length=4)
+     * @ORM\Column(type="integer",length=4,name="minvalue")
      */
     protected $minValue; 
     /**
-     * @ORM\Column(type="integer",length=4)
+     * @ORM\Column(type="integer",length=4,name="maxvalue")
      */
     protected $maxValue; 
     

@@ -141,17 +141,17 @@ class Version20130319135624 extends BundleMigration
         $table=$schema->createTable('imavia_attributevalue');
         $this->addId($table);
         
-        $table->addColumn('evaluation_date','datetime');
+        $table->addColumn('evaluationdate','datetime');
         $table->addColumn('value','string',array('length'=>255));
         $table->addColumn('description','text');
         $table->addColumn('name','string',array('length'=>255));
         $table->addColumn('creationdate','datetime');
         $table->addColumn('lastmodificationdate','datetime');
-        $table->addColumn('idscale_id','integer');
+        $table->addColumn('scale_id','integer');
         $table->addColumn('comments_id','integer');
         $table->addForeignKeyConstraint(
             $schema->getTable('imavia_scale'),
-            array('idscale_id'),
+            array('scale_id'),
             array('id'),
             array('onDelete' => 'CASCADE')
         );

@@ -4,7 +4,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="Imavia_Attribute")
+ * @ORM\Table(name="imavia_attribute")
  */
 
 class Attribute extends profileView
@@ -12,6 +12,7 @@ class Attribute extends profileView
     /**
       *
       * @ORM\ManyToOne(targetEntity="Imavia\FacetProfileBundle\Entity\attributeValue")
+      * @ORM\Column(name="values")
       */
     private $Values ;
     

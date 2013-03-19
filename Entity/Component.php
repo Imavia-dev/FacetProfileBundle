@@ -4,13 +4,14 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="Imavia_Component")
+ * @ORM\Table(name="imavia_component")
  */
 class Component extends profileView 
 {
      /**
       *
       * @ORM\ManyToOne(targetEntity="Imavia\FacetProfileBundle\Entity\Attribute")
+      * @ORM\Column(name="attributes")
       */
     protected $Attributes;
     

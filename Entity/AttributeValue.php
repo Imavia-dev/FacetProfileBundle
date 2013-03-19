@@ -4,25 +4,26 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="Imavia_AttributeValue")
+ * @ORM\Table(name="imavia_attributeValue")
  */
 
 class AttributeValue extends profileView
 {
     
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime",name="evaluationdate")
      */
     protected $evaluationDate; 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string",name="value")
      */
     protected $value;
      /**
       *
       * @ORM\OneToOne(targetEntity="Imavia\FacetProfileBundle\Entity\Scale")
+      * @ORM\Column(name="scale")
       */
-    protected $idScale ; 
+    protected $Scale ; 
 }
 
 ?>

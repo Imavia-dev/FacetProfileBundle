@@ -4,7 +4,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="Imavia_Profile")
+ * @ORM\Table(name="imavia_profile")
  */
 class Profile {
    
@@ -19,6 +19,7 @@ class Profile {
      /**
       *
       * @ORM\ManyToOne(targetEntity="Imavia\FacetProfileBundle\Entity\Facet")
+      * @ORM\Column(name="facets")
       */
     protected $Facets; 
 
