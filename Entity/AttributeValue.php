@@ -15,15 +15,53 @@ class AttributeValue extends profileView
      */
     protected $evaluationDate; 
     /**
-     * @ORM\Column(type="string",name="value")
+     * @ORM\ManyToOne(targetEntity="Imavia\FacetProfileBundle\Entity\Attributes")
+     * @ORM\Column(type="string",name="attributes")
      */
-    protected $value;
-     /**
+    protected $attribute ;
+        
+      /**
       *
       * @ORM\OneToOne(targetEntity="Imavia\FacetProfileBundle\Entity\Scale")
       * @ORM\Column(name="scale")
       */
     protected $Scale ; 
+    
+    
+    public function getAttribute() 
+    {
+        return $this->attribute;
+    }
+
+    public function setAttribute($attribute) 
+    {
+        $this->attribute = $attribute;
+    }
+
+    public function getEvaluationDate() 
+    {
+        return $this->evaluationDate;
+    }
+
+    public function setEvaluationDate($evaluationDate) 
+    {
+        $this->evaluationDate = $evaluationDate;
+    }
+  
+    public function getScale() 
+    {
+        return $this->Scale;
+    }
+
+    public function setScale($Scale) 
+    {
+        $this->Scale = $Scale;
+    }
+
+    
+    
+   
+   
 }
 
 ?>

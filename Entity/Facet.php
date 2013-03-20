@@ -8,29 +8,29 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Facet extends profileView 
 {
-     /**
+      /**
       *
-      * @ORM\ManyToOne(targetEntity="Imavia\FacetProfileBundle\Entity\Component")
-      * @ORM\Column(name="components")
+      * @ORM\ManyToOne(targetEntity="Imavia\FacetProfileBundle\Entity\Profile")
+      * @ORM\Column(name="profile")
       */
-    protected $Components;
+    protected $Profile ; 
     
-    public function getComponents() 
+    public function getProfile() 
     {
-        return $this->Components;
+        return $this->Profile;
     }
 
-    public function addComponent(\Imavia\FacetProfileBundle\Entity\Component $Component) 
+    public function setProfile($Profile) 
     {
-        $this->Components[] = $Component;
+        $this->Profile = $Profile;
     }
-    
+
     function __construct() 
     {
-        parent::__construct();
-        $this->Components=new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
+    
+        
+    }  
+   
 
 }
 

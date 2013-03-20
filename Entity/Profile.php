@@ -16,14 +16,6 @@ class Profile {
      */
     protected $id ; 
    
-     /**
-      *
-      * @ORM\ManyToOne(targetEntity="Imavia\FacetProfileBundle\Entity\Facet")
-      * @ORM\Column(name="facets")
-      */
-    protected $Facets; 
-
-
     public function getId() 
     {
         return $this->id;
@@ -34,19 +26,9 @@ class Profile {
         $this->id = $id;
     }
 
-    public function getFacets() 
-    {
-        return $this->Facets;
-    }
-
-    public function addFacets($Facet) 
-    {
-        $this->Facets[] = $Facet;
-    }
-
     function __construct() 
     {
-         $this->Facets=new \Doctrine\Common\Collections\ArrayCollection();
+       
     }
 
     

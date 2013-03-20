@@ -10,25 +10,23 @@ class Component extends profileView
 {
      /**
       *
-      * @ORM\ManyToOne(targetEntity="Imavia\FacetProfileBundle\Entity\Attribute")
-      * @ORM\Column(name="attributes")
+      * @ORM\ManyToOne(targetEntity="Imavia\FacetProfileBundle\Entity\Facet")
+      * @ORM\Column(name="facet")
       */
-    protected $Attributes;
+    protected $Facet;
     
-    public function getAttributes() 
-    {
-        return $this->Attributes;
+    public function getFacet() {
+        return $this->Facet;
     }
 
-    public function addAttribute(\Imavia\FacetProfileBundle\Entity\Attribute $Attribute) 
-    {
-        $this->Attributes[] = $Attribute;
+    public function setFacet($Facet) {
+        $this->Facet = $Facet;
     }
-    
+
+        
     function __construct() 
     {
-        parent::__construct();
-        $this->Attributes=new \Doctrine\Common\Collections\ArrayCollection();
+      
     }
 
 

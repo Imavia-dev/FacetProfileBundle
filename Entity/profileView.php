@@ -31,11 +31,7 @@ abstract class profileView {
      */
     protected $lastModificationDate ;
     
-     /**
-     * @ORM\ManyToOne(targetEntity="Imavia\FacetProfileBundle\Entity\userComment")
-     * @ORM\Column(name="comments")
-     */
-     protected $Comments ;
+   
     
      function __construct()
      {

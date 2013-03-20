@@ -14,6 +14,7 @@ class userComment
      * @ORM\GeneratedValue(strategy="AUTO")
      * @var int $id ID de la classe
      */
+   
     protected $id;
     /**
      * @ORM\Column(type="text",name="commentcontent")
@@ -24,7 +25,21 @@ class userComment
      */
     protected $emissionDate; 
    
-    public function getId() {
+       /**
+     * @ORM\ManyToOne(targetEntity="Imavia\FacetProfileBundle\Entity\profileView")
+     * @ORM\Column(name="profileview")
+     */
+     protected $profileview ; 
+    
+     public function getProfileview() {
+         return $this->profileview;
+     }
+
+     public function setProfileview($profileview) {
+         $this->profileview = $profileview;
+     }
+
+     public function getId() {
         return $this->id;
     }
 
