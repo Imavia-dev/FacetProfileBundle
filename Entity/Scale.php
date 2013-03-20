@@ -25,13 +25,13 @@ class Scale
      */
     protected $date; 
     /**
-     * @ORM\Column(type="integer",length=4,name="minvalue")
+     * @ORM\Column(type="integer",length=4,name="minval")
      */
-    protected $minValue; 
+    protected $minVal; 
     /**
-     * @ORM\Column(type="integer",length=4,name="maxvalue")
+     * @ORM\Column(type="integer",length=4,name="maxval")
      */
-    protected $maxValue; 
+    protected $maxVal; 
     
     public function getId() {
         return $this->id;
@@ -57,20 +57,20 @@ class Scale
         $this->date = $date;
     }
 
-    public function getMinValue() {
-        return $this->minValue;
+    public function getMinVal() {
+        return $this->minVal;
     }
 
-    public function setMinValue($minValue) {
-        $this->minValue = $minValue;
+    public function setMinVal($minVal) {
+        $this->minVal = $minVal;
     }
 
-    public function getMaxValue() {
-        return $this->maxValue;
+    public function getMaxVal() {
+        return $this->maxVal;
     }
 
-    public function setMaxValue($maxValue) {
-        $this->maxValue = $maxValue;
+    public function setMaxVal($maxVal) {
+        $this->maxVal = $maxVal;
     }
 
 
