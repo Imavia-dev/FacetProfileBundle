@@ -21,7 +21,7 @@ class Facet extends ProfileView
 {
       /**
       * @ORM\ManyToOne(targetEntity = "Imavia\FacetProfileBundle\Entity\Profile")
-      * @ORM\Column(name = "profile")
+      * @ORM\Column(name = "profile_id")
       */
     protected $Profile ;
     

@@ -39,7 +39,7 @@ class UserComment
    
     /**
     * @ORM\ManyToOne(targetEntity = "Imavia\FacetProfileBundle\Entity\profileView")
-    * @ORM\Column(name = "profileview")
+    * @ORM\Column(name = "profileview_id")
     */
     protected $profileview;
     

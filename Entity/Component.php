@@ -21,7 +21,7 @@ class Component extends ProfileView
 {
     /**
      * @ORM\ManyToOne(targetEntity = "Imavia\FacetProfileBundle\Entity\Facet")
-     * @ORM\Column(name = "facet")
+     * @ORM\Column(name = "facet_id")
      */
     protected $Facet;
     

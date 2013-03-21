@@ -13,23 +13,23 @@ class Version20130319135624 extends BundleMigration
     public function up(Schema $schema)
     {
         $this->createImaviaUserCommentTable($schema);
+        $this->createImaviaProfileTable($schema);
+        $this->createImaviaFacetTable($schema);
+        $this->createImaviaComponentTable($schema);
+        $this->createImaviaAttributeTable($schema);
         $this->createImaviaScaleTable($schema);
         $this->createImaviaAttributeValueTable($schema);
-        $this->createImaviaAttributeTable($schema);
-        $this->createImaviaComponentTable($schema);
-        $this->createImaviaFacetTable($schema);
-        $this->createImaviaProfileTable($schema);
     }
 
     public function down(Schema $schema)
     {
         $schema->dropTable('imavia_usercomment');
+        $schema->dropTable('imavia_profile');
+        $schema->dropTable('imavia_facet');
+        $schema->dropTable('imavia_component');
+        $schema->dropTable('imavia_attribute');
         $schema->dropTable('imavia_scale');
         $schema->dropTable('imavia_attributevalue');
-        $schema->dropTable('imavia_attribute');
-        $schema->dropTable('imavia_component');
-        $schema->dropTable('imavia_facet');
-        $schema->dropTable('imavia_profile');
     }
     
     private function createImaviaProfileTable(Schema $schema)
@@ -48,15 +48,24 @@ class Version20130319135624 extends BundleMigration
         $table->addColumn('creationdate', 'datetime');
         $table->addColumn('lastmodificationdate', 'datetime');
         
-        $table->addColumn('profile', 'integer');
+        $table->addColumn('profile_id', 'integer');
         $table->addForeignKeyConstraint(
             $schema->getTable('imavia_profile'),
-            array('profile'),
+            array('profile_id'),
             array('id'),
             array('onDelete' => 'CASCADE')
         );
-        $table->addUniqueIndex(array('profile'));
+        $table->addUniqueIndex(array('profile_id'));
        
+        $table->addColumn('comment_id', 'integer');
+       
+        $table->addForeignKeyConstraint(
+            $schema->getTable('imavia_usercomment'),
+            array('comment_id'),
+            array('id'),
+            array('onDelete' => 'CASCADE')
+        );
+        $table->addUniqueIndex(array('comment_id'));
         
         $this->storeTable($table);
     }
@@ -70,26 +79,26 @@ class Version20130319135624 extends BundleMigration
         $table->addColumn('name', 'string', array('length' => 255));
         $table->addColumn('creationdate', 'datetime');
         $table->addColumn('lastmodificationdate', 'datetime');
-        $table->addColumn('facet', 'integer');
+        $table->addColumn('facet_id', 'integer');
         
         $table->addForeignKeyConstraint(
             $schema->getTable('imavia_facet'),
-            array('facet'),
+            array('facet_id'),
             array('id'),
             array('onDelete' => 'CASCADE')
         );
-        $table->addUniqueIndex(array('profile'));
+        $table->addUniqueIndex(array('facet_id'));
         
         
-        $table->addColumn('comment', 'integer');
+        $table->addColumn('comment_id', 'integer');
        
         $table->addForeignKeyConstraint(
             $schema->getTable('imavia_usercomment'),
-            array('comment'),
+            array('comment_id'),
             array('id'),
             array('onDelete' => 'CASCADE')
         );
-        $table->addUniqueIndex(array('comment'));
+        $table->addUniqueIndex(array('comment_id'));
         $this->storeTable($table);
     }
     
@@ -103,24 +112,24 @@ class Version20130319135624 extends BundleMigration
         $table->addColumn('creationdate', 'datetime');
         $table->addColumn('lastmodificationdate', 'datetime');
        
-        $table->addColumn('component', 'integer');
+        $table->addColumn('component_id', 'integer');
         $table->addForeignKeyConstraint(
             $schema->getTable('imavia_component'),
-            array('component'),
+            array('component_id'),
             array('id'),
             array('onDelete'  => 'CASCADE')
         );
-         $table->addUniqueIndex(array('comment'));
+         $table->addUniqueIndex(array('component_id'));
         
     
-        $table->addColumn('comment', 'integer');
+        $table->addColumn('comment_id', 'integer');
         $table->addForeignKeyConstraint(
             $schema->getTable('imavia_usercomment'),
-            array('comment'),
+            array('comment_id'),
             array('id'),
             array('onDelete'  => 'CASCADE')
         );
-         $table->addUniqueIndex(array('comment'));
+         $table->addUniqueIndex(array('comment_id'));
         
         $this->storeTable($table);
     }
@@ -136,14 +145,14 @@ class Version20130319135624 extends BundleMigration
         $table->addColumn('name', 'string', array('length' => 255));
         $table->addColumn('creationdate', 'datetime');
         $table->addColumn('lastmodificationdate', 'datetime');
-        $table->addColumn('attribute', 'integer');
+        $table->addColumn('attribute_id', 'integer');
         $table->addForeignKeyConstraint(
             $schema->getTable('imavia_attribute'),
-            array('attribute'),
+            array('attribute_id'),
             array('id'),
             array('onDelete'  => 'CASCADE')
         );
-        $table->addUniqueIndex(array('scale_id'));
+        $table->addUniqueIndex(array('attribute_id'));
         
         $table->addColumn('scale_id', 'integer');
       
@@ -155,14 +164,14 @@ class Version20130319135624 extends BundleMigration
         );
         $table->addUniqueIndex(array('scale_id'));
         
-        $table->addColumn('comment', 'integer');
+        $table->addColumn('comment_id', 'integer');
         $table->addForeignKeyConstraint(
             $schema->getTable('imavia_usercomment'),
-            array('comment'),
+            array('comment_id'),
             array('id'),
             array('onDelete'  => 'CASCADE')
         );
-         $table->addUniqueIndex(array('comment'));
+         $table->addUniqueIndex(array('comment_id'));
         
         $this->storeTable($table);
     }

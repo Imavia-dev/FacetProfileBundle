@@ -25,13 +25,13 @@ class AttributeValue extends ProfileView
     protected $evaluationDate;
     /**
      * @ORM\ManyToOne(targetEntity = "Imavia\FacetProfileBundle\Entity\Attributes")
-     * @ORM\Column(type = "string",name = "attributes")
+     * @ORM\Column(type = "string",name = "attribute_id")
      */
     protected $attribute;
         
     /**
     * @ORM\OneToOne(targetEntity = "Imavia\FacetProfileBundle\Entity\Scale")
-    * @ORM\Column(name = "scale")
+    * @ORM\Column(name = "scale_id")
     */
     protected $scale;
     

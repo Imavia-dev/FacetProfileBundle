@@ -22,7 +22,7 @@ class Attribute extends ProfileView
     
     /**
      * @ORM\ManyToOne(targetEntity = "Imavia\FacetProfileBundle\Entity\Component")
-     * @ORM\Column(name = "component")
+     * @ORM\Column(name = "component_id")
      */
     protected $Component;
     
