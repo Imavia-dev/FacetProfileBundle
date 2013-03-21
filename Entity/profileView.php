@@ -1,104 +1,95 @@
 <?php
+/**
+ * Imavia Bundle Object ProfileView
+ *    
+ * @author Jerome Varini <jerome.varini@imavia.fr>
+ * @author Fricker Sebastien <sebastien.fricker@imavia.fr>
+ */
 namespace Imavia\FacetProfileBundle\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * Classe Abstraite permettant de regrouper les elements commun au profil utilisateur
  * @ORM\MappedSuperclass
- */ 
-abstract class profileView {
+ */
+abstract class ProfileView
+{
+    
     /**
      * @ORM\Id 
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(name = "id", type = "integer")
+     * @ORM\GeneratedValue(strategy = "AUTO")
      * @var int $id ID de la classe
      */
-    
-    protected $id ;
+    protected $Id;
     /**
-     * @ORM\Column(type="text",name="description")
+     * @ORM\Column(type = "text",name = "description")
      */
-    protected  $Description ; 
+    protected $description;
     /**
-     * @ORM\Column(type="string",length=255,name="name")
+     * @ORM\Column(type = "string",length = 255,name = "name")
      */
-    protected $Name; 
+    protected $name;
     /**
-     * @ORM\Column(type="datetime",name="creationdate")
+     * @ORM\Column(type = "datetime",name = "creationdate")
      */
-    protected  $creationDate ; 
+    protected $creationDate;
     /**
-     * @ORM\Column(type="datetime",name="lastmodificationdate")
+     * @ORM\Column(type = "datetime",name = "lastmodificationdate")
      */
-    protected $lastModificationDate ;
-    
+    protected $lastModificationDate;
    
-    
-     function __construct()
-     {
-         //Initialisation de la collection de commentaires 
-         $this->Comments=new \Doctrine\Common\Collections\ArrayCollection();
-     }
-
-     function __destruct()
-     {
-         
-     }    
-
-    /* getter Setter */
-    public function getId() {
+    /**
+     *  getter Setter 
+     */
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function setId($id) {
+    public function setId($id)
+    {
         $this->id = $id;
     }
 
-    public function getDescription() {
-        return $this->Description;
+    public function getDescription()
+    {
+        return $this->description;
     }
 
-    public function setDescription($Description) {
-        $this->Description = $Description;
+    public function setDescription($description)
+    {
+        $this->description = $description;
     }
 
-    public function getName() {
-        return $this->Name;
+    public function getName()
+    {
+        return $this->name;
     }
 
-    public function setName($Name) {
-        $this->Name = $Name;
+    public function setName($name)
+    {
+        $this->name = $name;
     }
 
-    public function getCreationDate() {
+    public function getCreationDate()
+    {
         return $this->creationDate;
     }
 
-    public function setCreationDate($creationDate) {
+    public function setCreationDate($creationDate)
+    {
         $this->creationDate = $creationDate;
     }
 
-    public function getLastModificationDate() {
+    public function getLastModificationDate()
+    {
         return $this->lastModificationDate;
     }
 
-    public function setLastModificationDate($lastModificationDate) {
+    public function setLastModificationDate($lastModificationDate)
+    {
         $this->lastModificationDate = $lastModificationDate;
     }
-    
-    public function getComments() {
-        return $this->Comments;
-    }
-
-    /*
-     * Ajoute un commentaire au tableau de commentaire 
-     * @var usercomment $Comment 
-     */
-    
-    public function addComments(\Imavia\FacetProfileBundle\Entity\userComment $Comment) {
-        $this->Comments[] = $Comment;
-    }
-
-
 }
-
-?>

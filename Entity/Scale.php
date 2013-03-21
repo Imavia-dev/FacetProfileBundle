@@ -1,81 +1,95 @@
 <?php
+/**
+ * Imavia Bundle Object Scale
+ *    
+ * @author Jerome Varini <jerome.varini@imavia.fr>
+ * @author Fricker Sebastien <sebastien.fricker@imavia.fr>
+ * @link   http://www.imavia.fr Site web Imavia
+ * 
+ */
 namespace Imavia\FacetProfileBundle\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * Represente les echelles de valeur pour une evaluation 
+ * 
  * @ORM\Entity
- * @ORM\Table(name="Imavia_Scale")
+ * @ORM\Table(name = "Imavia_Scale")
  */
-class Scale 
+class Scale
 {
     /**
      * @ORM\Id 
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(type = "integer")
+     * @ORM\GeneratedValue(strategy = "AUTO")
      * @var int $id ID de la classe
      */
-    protected $id; 
- 
+    protected $id;
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type = "text")
      */
-    protected $description; 
+    protected $description;
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type = "datetime")
      */
-    protected $date; 
+    protected $date;
     /**
-     * @ORM\Column(type="integer",length=4,name="minval")
+     * @ORM\Column(type = "integer",length = 4,name = "minval")
      */
-    protected $minVal; 
+    protected $minVal;
     /**
-     * @ORM\Column(type="integer",length=4,name="maxval")
+     * @ORM\Column(type = "integer",length = 4,name = "maxval")
      */
-    protected $maxVal; 
+    protected $maxVal;
     
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function setId($id) {
+    public function setId($id)
+    {
         $this->id = $id;
     }
 
-    public function getDescription() {
+    public function getDescription()
+    {
         return $this->description;
     }
 
-    public function setDescription($description) {
+    public function setDescription($description)
+    {
         $this->description = $description;
     }
 
-    public function getDate() {
+    public function getDate()
+    {
         return $this->date;
     }
 
-    public function setDate($date) {
+    public function setDate($date)
+    {
         $this->date = $date;
     }
 
-    public function getMinVal() {
+    public function getMinVal()
+    {
         return $this->minVal;
     }
 
-    public function setMinVal($minVal) {
+    public function setMinVal($minVal)
+    {
         $this->minVal = $minVal;
     }
 
-    public function getMaxVal() {
+    public function getMaxVal()
+    {
         return $this->maxVal;
     }
 
-    public function setMaxVal($maxVal) {
+    public function setMaxVal($maxVal)
+    {
         $this->maxVal = $maxVal;
     }
-
-
-    
-    
 }
-
-?>

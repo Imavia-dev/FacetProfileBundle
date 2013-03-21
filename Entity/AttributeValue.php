@@ -1,67 +1,83 @@
 <?php
+/**
+ * Imavia Bundle Object AttributeValue
+ *    
+ * @author Jerome Varini <jerome.varini@imavia.fr>
+ *         Fricker Sebastien <sebastien.fricker@imavia.fr>
+ * @link   http://www.imavia.fr Site web Imavia
+ * 
+ */
 namespace Imavia\FacetProfileBundle\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * Classe Abstraite representant un element du profile
+ * 
  * @ORM\Entity
- * @ORM\Table(name="imavia_attributeValue")
+ * @ORM\Table(name = "imavia_attributeValue")
  */
-
-class AttributeValue extends profileView
+class AttributeValue extends ProfileView
 {
-    
     /**
-     * @ORM\Column(type="datetime",name="evaluationdate")
+     * @ORM\Column(type = "datetime",name = "evaluationdate")
      */
-    protected $evaluationDate; 
+    protected $evaluationDate;
     /**
-     * @ORM\ManyToOne(targetEntity="Imavia\FacetProfileBundle\Entity\Attributes")
-     * @ORM\Column(type="string",name="attributes")
+     * @ORM\ManyToOne(targetEntity = "Imavia\FacetProfileBundle\Entity\Attributes")
+     * @ORM\Column(type = "string",name = "attributes")
      */
-    protected $attribute ;
+    protected $attribute;
         
-      /**
-      *
-      * @ORM\OneToOne(targetEntity="Imavia\FacetProfileBundle\Entity\Scale")
-      * @ORM\Column(name="scale")
-      */
-    protected $Scale ; 
+    /**
+    * @ORM\OneToOne(targetEntity = "Imavia\FacetProfileBundle\Entity\Scale")
+    * @ORM\Column(name = "scale")
+    */
+    protected $scale;
     
-    
-    public function getAttribute() 
+    /**
+     * getter Attribute
+     */
+    public function getAttribute()
     {
         return $this->attribute;
     }
 
-    public function setAttribute($attribute) 
+    /**
+     * Setter Attribute
+     */
+    public function setAttribute($attribute)
     {
         $this->attribute = $attribute;
     }
 
-    public function getEvaluationDate() 
+    /**
+     * 
+     */
+    public function getEvaluationDate()
     {
         return $this->evaluationDate;
     }
-
-    public function setEvaluationDate($evaluationDate) 
+    /**
+     * 
+     */
+    public function setEvaluationDate($evaluationDate)
     {
         $this->evaluationDate = $evaluationDate;
     }
-  
-    public function getScale() 
+    
+    /**
+     * 
+     */
+    public function getScale()
     {
         return $this->Scale;
     }
-
-    public function setScale($Scale) 
+    /**
+     * 
+     */
+    public function setScale($Scale)
     {
         $this->Scale = $Scale;
     }
-
-    
-    
-   
-   
 }
-
-?>

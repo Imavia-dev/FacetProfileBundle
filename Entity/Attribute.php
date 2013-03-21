@@ -1,39 +1,50 @@
 <?php
+/**
+ * Imavia Bundle Object Attribute
+ *    
+ * @author Jerome Varini <jerome.varini@imavia.fr>
+ * @author Fricker Sebastien <sebastien.fricker@imavia.fr>
+ * @link   http://www.imavia.fr Site web Imavia
+ * 
+ */
 namespace Imavia\FacetProfileBundle\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * Represente un attribut du Profile à facette (Imavia)
+ * 
  * @ORM\Entity
- * @ORM\Table(name="imavia_attribute")
+ * @ORM\Table(name = "imavia_attribute")
  */
-
-class Attribute extends profileView
+class Attribute extends ProfileView
 {
+    
     /**
-      *
-      * @ORM\ManyToOne(targetEntity="Imavia\FacetProfileBundle\Entity\Component")
-      * @ORM\Column(name="component")
-      */
-    private $component ;
+     * @ORM\ManyToOne(targetEntity = "Imavia\FacetProfileBundle\Entity\Component")
+     * @ORM\Column(name = "component")
+     */
+    protected $Component;
     
-    public function getComponent() 
+    /**
+     * Getter Component
+     * 
+     * @return Component
+     */
+    public function getComponent()
     {
-        return $this->component;
+        return $this->Component;
     }
-
-    public function setComponent($component) 
-    {
-        $this->component = $component;
-    }
-
-        
-    function __construct() 
-    {
-      
-    }
-
-
     
+    /**
+     * Setter Component 
+     * 
+     * @param Component $Component Representant un composant du profile à facette
+     * 
+     * @return none
+     */
+    public function setComponent($Component)
+    {
+        $this->Component = $Component;
+    }
 }
-
-?>

@@ -1,20 +1,35 @@
 <?php
-
+/**
+ * Imavia Bundle Object AttributeValue
+ *    
+ * @author Jerome Varini <jerome.varini@imavia.fr>
+ * @author Fricker Sebastien <sebastien.fricker@imavia.fr>
+ * @link   http://www.imavia.fr Site web Imavia
+ * 
+ */
 namespace Imavia\FacetProfileBundle\Listener;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Claroline\CoreBundle\Library\Event\DisplayToolEvent;
 
-class FacetProfileListener extends ContainerAware 
+/**
+ * Listener Profile Bundle
+ */
+
+class FacetProfileListener extends ContainerAware
 {
+    /**
+     * fonction Apppele par le listeners 
+     * 
+     * @param \Claroline\CoreBundle\Library\Event\DisplayToolEvent $event 
+     * Evenement declenché par le bureau claroline 
+     * 
+     * @return none 
+     */
     public function onStartUp(DisplayToolEvent $event)
     {
-        
         $twig = $this->container->get('templating');
         $vue=$twig->render('ImaviaFacetProfileBundle::HelloWorld.html.twig');
         $event->setContent($vue);
-       
     }
 }
-
-?>

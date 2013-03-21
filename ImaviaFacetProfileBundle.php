@@ -1,12 +1,20 @@
 <?php
-
-namespace Imavia\FacetProfileBundle ;
+/**
+ * Bundle Imavia FacetProfile
+ *    
+ * @author Jerome Varini <jerome.varini@imavia.fr>
+ * @author Fricker Sebastien <sebastien.fricker@imavia.fr>
+ * @link   http://www.imavia.fr Site web Imavia
+ * 
+ */
+namespace Imavia\FacetProfileBundle;
 
 use Claroline\CoreBundle\Library\PluginBundle;
 
-class ImaviaFacetProfileBundle extends PluginBundle 
-{
-  
-}
+/*
+ * Imavia Facet Profile Bundle
+ */
 
-?>
+class ImaviaFacetProfileBundle extends PluginBundle
+{
+}
