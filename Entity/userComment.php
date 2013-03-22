@@ -26,7 +26,7 @@ class UserComment
      * @ORM\GeneratedValue(strategy = "AUTO")
      * @var int $id ID de la classe
      */
-   
+
     protected $id;
     /**
      * @ORM\Column(type = "text",name = "commentcontent")
@@ -36,13 +36,13 @@ class UserComment
      * @ORM\Column(type = "datetime",name = "emissiondate")
      */
     protected $emissionDate;
-   
+
     /**
     * @ORM\ManyToOne(targetEntity = "Imavia\FacetProfileBundle\Entity\profileView")
     * @ORM\Column(name = "profileview_id")
     */
     protected $profileview;
-    
+
     public function getProfileview()
     {
         return $this->profileview;

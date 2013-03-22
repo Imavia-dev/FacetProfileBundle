@@ -28,13 +28,13 @@ class AttributeValue extends ProfileView
      * @ORM\Column(type = "string",name = "attribute_id")
      */
     protected $attribute;
-        
+
     /**
     * @ORM\OneToOne(targetEntity = "Imavia\FacetProfileBundle\Entity\Scale")
     * @ORM\Column(name = "scale_id")
     */
     protected $scale;
-    
+
     /**
      * getter Attribute
      */
@@ -65,19 +65,19 @@ class AttributeValue extends ProfileView
     {
         $this->evaluationDate = $evaluationDate;
     }
-    
+
     /**
      * 
      */
     public function getScale()
     {
-        return $this->Scale;
+        return $this->scale;
     }
     /**
      * 
      */
-    public function setScale($Scale)
+    public function setScale($scale)
     {
-        $this->Scale = $Scale;
+        $this->scale = $scale;
     }
 }

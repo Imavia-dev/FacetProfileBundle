@@ -31,14 +31,14 @@ class Version20130319135624 extends BundleMigration
         $schema->dropTable('imavia_scale');
         $schema->dropTable('imavia_attributevalue');
     }
-    
+
     private function createImaviaProfileTable(Schema $schema)
     {
         $table = $schema->createTable('imavia_profile');
         $this->addId($table);
         $this->storeTable($table);
     }
-    
+
     private function createImaviaFacetTable(Schema $schema)
     {
         $table = $schema->createTable('imavia_facet');
@@ -47,7 +47,6 @@ class Version20130319135624 extends BundleMigration
         $table->addColumn('name', 'string', array('length' => 255));
         $table->addColumn('creationdate', 'datetime');
         $table->addColumn('lastmodificationdate', 'datetime');
-        
         $table->addColumn('profile_id', 'integer');
         $table->addForeignKeyConstraint(
             $schema->getTable('imavia_profile'),
@@ -56,9 +55,7 @@ class Version20130319135624 extends BundleMigration
             array('onDelete' => 'CASCADE')
         );
         $table->addUniqueIndex(array('profile_id'));
-       
         $table->addColumn('comment_id', 'integer');
-       
         $table->addForeignKeyConstraint(
             $schema->getTable('imavia_usercomment'),
             array('comment_id'),
@@ -66,11 +63,9 @@ class Version20130319135624 extends BundleMigration
             array('onDelete' => 'CASCADE')
         );
         $table->addUniqueIndex(array('comment_id'));
-        
         $this->storeTable($table);
     }
-    
-        
+
     private function createImaviaComponentTable(Schema $schema)
     {
         $table = $schema->createTable('imavia_component');
@@ -80,7 +75,18 @@ class Version20130319135624 extends BundleMigration
         $table->addColumn('creationdate', 'datetime');
         $table->addColumn('lastmodificationdate', 'datetime');
         $table->addColumn('facet_id', 'integer');
-        
+        $table->addColumn('treeleft_id', 'integer', array('notnull' => false));
+        $table->addColumn('treeright_id', 'integer', array('notnull' => false));
+        $table->addColumn('treeroot_id', 'integer', array('notnull' => false));
+        $table->addColumn('treelevel_id', 'integer', array('notnull' => false));
+        $table->addColumn('parent_id', 'integer');
+        $table->addForeignKeyConstraint(
+            $schema->getTable('imavia_component'),
+            array('parent_id'),
+            array('id'),
+            array('onDelete' => 'CASCADE')
+        );
+        $table->addUniqueIndex(array('parent_id'));
         $table->addForeignKeyConstraint(
             $schema->getTable('imavia_facet'),
             array('facet_id'),
@@ -88,10 +94,7 @@ class Version20130319135624 extends BundleMigration
             array('onDelete' => 'CASCADE')
         );
         $table->addUniqueIndex(array('facet_id'));
-        
-        
         $table->addColumn('comment_id', 'integer');
-       
         $table->addForeignKeyConstraint(
             $schema->getTable('imavia_usercomment'),
             array('comment_id'),
@@ -101,8 +104,7 @@ class Version20130319135624 extends BundleMigration
         $table->addUniqueIndex(array('comment_id'));
         $this->storeTable($table);
     }
-    
-        
+
     private function createImaviaAttributeTable(Schema $schema)
     {
         $table = $schema->createTable('imavia_attribute');
@@ -111,7 +113,6 @@ class Version20130319135624 extends BundleMigration
         $table->addColumn('name', 'string', array('length' => 255));
         $table->addColumn('creationdate', 'datetime');
         $table->addColumn('lastmodificationdate', 'datetime');
-       
         $table->addColumn('component_id', 'integer');
         $table->addForeignKeyConstraint(
             $schema->getTable('imavia_component'),
@@ -119,9 +120,7 @@ class Version20130319135624 extends BundleMigration
             array('id'),
             array('onDelete'  => 'CASCADE')
         );
-         $table->addUniqueIndex(array('component_id'));
-        
-    
+        $table->addUniqueIndex(array('component_id'));
         $table->addColumn('comment_id', 'integer');
         $table->addForeignKeyConstraint(
             $schema->getTable('imavia_usercomment'),
@@ -129,16 +128,14 @@ class Version20130319135624 extends BundleMigration
             array('id'),
             array('onDelete'  => 'CASCADE')
         );
-         $table->addUniqueIndex(array('comment_id'));
-        
+        $table->addUniqueIndex(array('comment_id'));
         $this->storeTable($table);
     }
-    
+
     private function createImaviaAttributeValueTable(Schema $schema)
     {
         $table = $schema->createTable('imavia_attributevalue');
         $this->addId($table);
-        
         $table->addColumn('evaluationdate', 'datetime');
         $table->addColumn('value', 'string', array('length' => 255));
         $table->addColumn('description', 'text');
@@ -153,9 +150,7 @@ class Version20130319135624 extends BundleMigration
             array('onDelete'  => 'CASCADE')
         );
         $table->addUniqueIndex(array('attribute_id'));
-        
         $table->addColumn('scale_id', 'integer');
-      
         $table->addForeignKeyConstraint(
             $schema->getTable('imavia_scale'),
             array('scale_id'),
@@ -163,7 +158,6 @@ class Version20130319135624 extends BundleMigration
             array('onDelete'  => 'CASCADE')
         );
         $table->addUniqueIndex(array('scale_id'));
-        
         $table->addColumn('comment_id', 'integer');
         $table->addForeignKeyConstraint(
             $schema->getTable('imavia_usercomment'),
@@ -171,11 +165,10 @@ class Version20130319135624 extends BundleMigration
             array('id'),
             array('onDelete'  => 'CASCADE')
         );
-         $table->addUniqueIndex(array('comment_id'));
-        
+        $table->addUniqueIndex(array('comment_id'));
         $this->storeTable($table);
     }
-    
+
     private function createImaviaScaleTable(Schema $schema)
     {
         $table = $schema->createTable('imavia_scale');
@@ -186,7 +179,7 @@ class Version20130319135624 extends BundleMigration
         $table->addColumn('maxval', 'integer');
         $this->storeTable($table);
     }
-     
+
     private function createImaviaUserCommentTable(Schema $schema)
     {
         $table = $schema->createTable('imavia_usercomment');

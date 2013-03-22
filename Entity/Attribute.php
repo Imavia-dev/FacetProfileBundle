@@ -19,13 +19,13 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Attribute extends ProfileView
 {
-    
+
     /**
      * @ORM\ManyToOne(targetEntity = "Imavia\FacetProfileBundle\Entity\Component")
      * @ORM\Column(name = "component_id")
      */
-    protected $Component;
-    
+    protected $component;
+
     /**
      * Getter Component
      * 
@@ -33,9 +33,9 @@ class Attribute extends ProfileView
      */
     public function getComponent()
     {
-        return $this->Component;
+        return $this->component;
     }
-    
+
     /**
      * Setter Component 
      * 
@@ -43,8 +43,8 @@ class Attribute extends ProfileView
      * 
      * @return none
      */
-    public function setComponent($Component)
+    public function setComponent($component)
     {
-        $this->Component = $Component;
+        $this->component = $component;
     }
 }

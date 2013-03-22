@@ -26,7 +26,7 @@ class Profile
      * @var int $id ID de la classe
      */
     protected $id;
-   
+
     public function getId()
     {
         return $this->id;
@@ -42,13 +42,12 @@ class Profile
         /**
          *  TODO Implements the SaveXmlProfile
          */
-        return;
     }
     public function loadXmlProfile($url)
     {
         /**
          * TODO Implements the LoadXmlProfile
+         * 
          */
-        return;
     }
 }

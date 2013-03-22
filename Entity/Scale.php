@@ -42,7 +42,7 @@ class Scale
      * @ORM\Column(type = "integer",length = 4,name = "maxval")
      */
     protected $maxVal;
-    
+
     public function getId()
     {
         return $this->id;

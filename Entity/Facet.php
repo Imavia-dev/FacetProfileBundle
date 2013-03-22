@@ -23,15 +23,15 @@ class Facet extends ProfileView
       * @ORM\ManyToOne(targetEntity = "Imavia\FacetProfileBundle\Entity\Profile")
       * @ORM\Column(name = "profile_id")
       */
-    protected $Profile ;
-    
+    protected $profile ;
+
     public function getProfile()
     {
-        return $this->Profile;
+        return $this->profile;
     }
 
-    public function setProfile($Profile)
+    public function setProfile($profile)
     {
-        $this->Profile = $Profile;
+        $this->profile = $profile;
     }
 }

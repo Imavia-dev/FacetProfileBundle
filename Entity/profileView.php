@@ -15,14 +15,14 @@ use Doctrine\ORM\Mapping as ORM;
  */
 abstract class ProfileView
 {
-    
+
     /**
      * @ORM\Id 
      * @ORM\Column(name = "id", type = "integer")
      * @ORM\GeneratedValue(strategy = "AUTO")
      * @var int $id ID de la classe
      */
-    protected $Id;
+    private $id;
     /**
      * @ORM\Column(type = "text",name = "description")
      */
@@ -39,7 +39,7 @@ abstract class ProfileView
      * @ORM\Column(type = "datetime",name = "lastmodificationdate")
      */
     protected $lastModificationDate;
-   
+
     /**
      *  getter Setter 
      */
