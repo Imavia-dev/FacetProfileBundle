@@ -15,7 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Represente les echelles de valeur pour une evaluation 
  * 
  * @ORM\Entity
- * @ORM\Table(name = "Imavia_Scale")
+ * @ORM\Table(name = "imavia_scale")
  */
 class Scale
 {

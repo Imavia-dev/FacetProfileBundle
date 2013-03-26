@@ -36,6 +36,11 @@ class AttributeValue extends ProfileView
     protected $scale;
 
     /**
+     * @ORM\Column(type = "string",name = "value")
+     */
+    protected $value;
+
+    /**
      * getter Attribute
      */
     public function getAttribute()
@@ -79,5 +84,15 @@ class AttributeValue extends ProfileView
     public function setScale($scale)
     {
         $this->scale = $scale;
+    }
+
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    public function setValue($value)
+    {
+        $this->value = $value;
     }
 }

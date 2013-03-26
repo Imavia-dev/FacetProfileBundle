@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Represente le profile utilisateur en entier 
  * 
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Imavia\FacetProfileBundle\Repository\ProfileRepository")
  * @ORM\Table(name = "imavia_profile")
  */
 class Profile

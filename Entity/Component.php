@@ -35,9 +35,9 @@ class Component extends ProfileView
 
     /**
      * @Gedmo\TreeLevel
-     * @ORM\Column(name="treelevel_id", type="integer",nullable=true)
+     * @ORM\Column(name="level", type="integer",nullable=true)
      */
-    protected $treelevel;
+    protected $level;
 
     /**
      * @Gedmo\TreeRight
@@ -47,9 +47,9 @@ class Component extends ProfileView
 
     /**
      * @Gedmo\TreeRoot
-     * @ORM\Column(name="treeroot_id", type="integer",nullable=true)
+     * @ORM\Column(name="root", type="integer",nullable=true)
      */
-    protected $treeroot;
+    protected $root;
 
     /**
      * @Gedmo\TreeParent
@@ -60,9 +60,19 @@ class Component extends ProfileView
 
     /**
      * @ORM\OneToMany(targetEntity="Component", mappedBy="parent")
-     * @ORM\OrderBy({"lft" = "ASC"})
+     * @ORM\OrderBy({"treeleft_id" = "ASC"})
      */
     protected $children;
+
+    public function getChildren()
+    {
+        return $this->children;
+    }
+
+    public function getRoot()
+    {
+        return $this->root;
+    }
 
     public function getFacet()
     {
@@ -84,5 +94,9 @@ class Component extends ProfileView
         $this->parent = $parent;
     }
 
+    public function getLevel()
+    {
+        return $this->level;
+    }
 
 }

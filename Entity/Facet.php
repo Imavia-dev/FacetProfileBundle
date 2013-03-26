@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Represente le plus haut niveau du profile à facette 
  * 
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Imavia\FacetProfileBundle\Repository\FacetRepository")
  * @ORM\Table(name = "imavia_facet")
  */
 class Facet extends ProfileView

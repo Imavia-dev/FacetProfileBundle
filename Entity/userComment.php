@@ -16,7 +16,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Represente les commentaires emis sur les differents elements du profil
  * 
  * @ORM\Entity
- * @ORM\Table(name = "Imavia_userComment")
+ * @ORM\Table(name = "imavia_usercomment")
  */
 class UserComment
 {
@@ -38,20 +38,28 @@ class UserComment
     protected $emissionDate;
 
     /**
-    * @ORM\ManyToOne(targetEntity = "Imavia\FacetProfileBundle\Entity\profileView")
-    * @ORM\Column(name = "profileview_id")
+    * @ORM\ManyToOne(targetEntity = "Imavia\FacetProfileBundle\Entity\Facet")
+    * @ORM\Column(name = "facet_id")
     */
-    protected $profileview;
+    protected $facetId;
 
-    public function getProfileview()
-    {
-        return $this->profileview;
-    }
+    /**
+    * @ORM\ManyToOne(targetEntity = "Imavia\FacetProfileBundle\Entity\Component")
+    * @ORM\Column(name = "component_id")
+    */
+    protected $componentId;
 
-    public function setProfileview($profileview)
-    {
-        $this->profileview = $profileview;
-    }
+    /**
+    * @ORM\ManyToOne(targetEntity = "Imavia\FacetProfileBundle\Entity\Attribute")
+    * @ORM\Column(name = "attribute_id")
+    */
+    protected $attributeId;
+
+    /**
+    * @ORM\ManyToOne(targetEntity = "Imavia\FacetProfileBundle\Entity\AttributeValue")
+    * @ORM\Column(name = "attributevalue_id")
+    */
+    protected $attributeValueId;
 
     public function getId()
     {
@@ -81,5 +89,44 @@ class UserComment
     public function setEmissionDate($emissionDate)
     {
         $this->emissionDate = $emissionDate;
+    }
+    public function getFacetId()
+    {
+        return $this->facetId;
+    }
+
+    public function setFacetId($facetId)
+    {
+        $this->facetId = $facetId;
+    }
+
+    public function getComponentId()
+    {
+        return $this->componentId;
+    }
+
+    public function setComponentId($componentId)
+    {
+        $this->componentId = $componentId;
+    }
+
+    public function getAttributeId()
+    {
+        return $this->attributeId;
+    }
+
+    public function setAttributeId($attributeId)
+    {
+        $this->attributeId = $attributeId;
+    }
+
+    public function getAttributeValueId()
+    {
+        return $this->attributeValueId;
+    }
+
+    public function setAttributeValueId($attributeValueId)
+    {
+        $this->attributeValueId = $attributeValueId;
     }
 }
