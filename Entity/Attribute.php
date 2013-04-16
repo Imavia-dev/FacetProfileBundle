@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Represente un attribut du Profile à facette (Imavia)
  * 
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Imavia\FacetProfileBundle\Repository\AttributeRepository")
  * @ORM\Table(name = "imavia_attribute")
  */
 class Attribute extends ProfileView

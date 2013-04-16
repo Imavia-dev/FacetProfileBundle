@@ -1,0 +1,124 @@
+{% extends "ClarolineCoreBundle:desktop:layout.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+<link rel="stylesheet" type:"text/css" href="{{ asset('bundles/imaviafacetprofile/css/imavia.css') }}"/>
+<link rel="stylesheet" type:"text/css" href="{{ asset('bundles/imaviafacetprofile/css/datepicker.css') }}"/>
+{% endblock %}
+
+{% block section_content %}
+      <div class="navbar">
+          <div class="navbar-inner">	
+              <h4><i class="icon-group"></i>Gestion des profils</h4>
+              <form class="form-horizontal pull-right">
+                 <!-- Button to trigger modal -->
+         
+                  <a class="btn btnMarginRight" href="{{app.request.requestUri}}/add"><i class="icon-plus-sign"></i>Ajouter</a>
+                 <!-- <a class="btn btnMarginRight" id="ModalOpener"><i class="icon-plus-sign"></i>Ajouter</a>-->
+
+                  <!-- Modal -->
+                  <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                      <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                          <h3 id="myModalLabel">Ajouter un nouveau profil utilisateur</h3>
+                      </div>
+                      <div class="modal-body">
+                          <i class="icon-spinner icon-spin icon-4x" id="spinner"></i>
+             
+                      </div>
+                      <div class="modal-footer">
+
+                      </div>
+                  </div>
+
+
+
+
+                  <div class="btn-group" data-toggle="buttons-radio">
+                      <button type="button" id="usersGrid" class="btn active"><i class="icon-th"></i></button>
+                      <button type="button" id="usersList" class="btn"><i class="icon-list"></i></button>
+                  </div>	
+
+                  <div class="input-append">
+                      <input class="span10" id="appendedInputButton" type="text" placeholder="Rechercher">
+                      <button class="btn" id="search" type="submit"><i class="icon-search"></i></button>
+                  </div>
+              </form>
+          </div>
+      </div>
+
+      <div class="imaviaGrid">
+          
+      {% for profile in profiles %}    
+          
+      <div class="border userBlock">
+    
+        <img src="{{asset('bundles/imaviafacetprofile/images/')}}{{ profile.photo }}" alt="test" class="img-polaroid userPhoto" />
+        <div class="InfosBlock">
+            <p>{{ profile.civilite }}</p>
+            <p>{{ profile.nom }}</p>
+            <p>{{ profile.prenom }}</p>
+            <p>Né(e) le : <span>{{ profile.ddn }}</span></p>
+            <div class="divider"></div>
+            {#<p class="muted">Profil crÃ©e le : <span></span></p>
+            <p class="text-warning">Modifier le : <span></span></p>#}
+        </div>
+        <div class="btn-group imgBtns">
+            <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
+                Actions
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="#">
+                        <i class="icon-pencil"></i>
+                        Edit
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="icon-eye-open"></i>
+                        View
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="icon-trash"></i>
+                        Delete
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+       {% endfor %}           
+          </div>
+          <ul id="UserContextMenu" class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+              <li>
+                  <a href="#">
+                      <i class="icon-pencil"></i>
+                      Edit
+                  </a>
+              </li>
+              <li>
+                  <a href="#">
+                      <i class="icon-eye-open"></i>
+                      View
+                  </a>
+              </li>
+              <li>
+                  <a href="#">
+                      <i class="icon-trash"></i>
+                      Delete
+                  </a>
+              </li>
+          </ul>
+
+{#<button id="btnGoUp" class="btn btnMarginRight" type="button"><i class="icon-arrow-up"></i>Remonter en haut de la page</button>#} 
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+          <script src="{{ asset('bundles/imaviafacetprofile/js/global.js')}}"></script>
+          <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+{% endblock %}

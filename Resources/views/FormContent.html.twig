@@ -1,0 +1,269 @@
+<form method="post" {{ form_enctype(form) }} id="imaviaForm">            
+
+    <div class="well span4 btn-primary" id="bloc1">
+        <div>
+            <img src="{{ asset('bundles/imaviafacetprofile/images/default.png') }}" class="img-polaroid UserPic" />
+        </div>
+        
+        <div class="span12">
+            {# Génération du label. #}
+            <i class="icon-picture"></i>
+            {{ form_label(form.civilite, "Uploadez une photo :") }}
+
+
+            {# Affichage des erreurs pour ce champ précis. #}
+            {{ form_errors(form.photo) }}
+
+
+                {# Génération de l'input. #}                
+                {{ form_widget(form.photo) }}
+
+                
+        </div>
+        <div class="span12">
+            {# Génération du label. #}
+            <i class="icon-user"></i>
+            {{ form_label(form.pseudo, "Pseudonyme :") }}            
+                
+            {# Affichage des erreurs pour ce champ précis. #}
+            {{ form_errors(form.pseudo) }}
+
+            {# Génération de l'input. #}
+            {{ form_widget(form.pseudo) }}
+
+        </div>
+        <div class="span12">
+            {# Génération du label. #}
+            <i class="icon-envelope"></i>
+            {{ form_label(form.mail, "Adresse mail principale :") }}
+                
+            {# Affichage des erreurs pour ce champ précis. #}
+            {{ form_errors(form.mail) }}
+
+            {# Génération de l'input. #}
+            {{ form_widget(form.mail) }}
+                
+            <i class="icon-plus-sign inputShow"></i>
+
+            
+        </div>
+        <div class="span12 hiddenField">
+            {# Génération du label. #}
+            <i class="icon-envelope"></i>
+            {{ form_label(form.mailsecours, "Adresse mail secondaire :") }}
+            
+            {# Affichage des erreurs pour ce champ précis. #}
+            {{ form_errors(form.mailsecours) }}
+
+            {# Génération de l'input. #}
+            {{ form_widget(form.mailsecours) }}
+         </div>
+        <div class="span12">
+          {# Génération du label. #}
+          <i class="icon-phone"></i>
+          {{ form_label(form.telephoneP, "Téléphone :") }}
+          
+          {# Affichage des erreurs pour ce champ précis. #}
+          {{ form_errors(form.telephoneP) }}
+
+          {# Génération de l'input. #}
+          {{ form_widget(form.telephoneP) }}
+                      
+          <i class="icon-plus-sign inputShow"></i>
+        </div>
+        <div class="span12 hiddenField">
+            {# Génération du label. #}
+            <i class="icon-mobile-phone"></i>
+            {{ form_label(form.telephoneS, "Téléphone secondaire :") }}
+            
+            {# Affichage des erreurs pour ce champ précis. #}
+            {{ form_errors(form.telephoneS) }}
+
+            {# Génération de l'input. #}
+            {{ form_widget(form.telephoneS) }}
+        </div>
+    </div>
+<div class="span4">
+    <div class="well span12">
+        <div>
+            {# Génération du label. #}
+            {{ form_label(form.civilite, "Civilité") }}
+
+            {# Affichage des erreurs pour ce champ précis. #}
+            {{ form_errors(form.civilite) }}
+
+            {# Génération de l'input. #}
+            {{ form_widget(form.civilite, { 'attr': {'class': 'span6'} }) }}
+        </div>
+        <div>
+            {# Génération du label. #}
+            {{ form_label(form.nom, "Nom :") }}
+
+            {# Affichage des erreurs pour ce champ précis. #}
+            {{ form_errors(form.nom) }}
+
+            {# Génération de l'input. #}
+            {{ form_widget(form.nom) }}
+        </div>
+        <div>
+            {# Génération du label. #}
+            {{ form_label(form.prenom, "Prénom :") }}
+
+            {# Affichage des erreurs pour ce champ précis. #}
+            {{ form_errors(form.prenom) }}
+
+            {# Génération de l'input. #}
+            {{ form_widget(form.prenom) }}
+        </div>
+        <div>
+            {# Génération du label. #}
+            {{ form_label(form.ddn, "Né(e) le :") }}
+
+            {# Affichage des erreurs pour ce champ précis. #}
+            {{ form_errors(form.ddn) }}
+
+            {# Génération de l'input. #}
+           {# {{ form_widget(form.ddn, { 'attr': {'class': 'datepicker'} }) }}#}
+            {{ form_widget(form.ddn) }}
+        </div>
+    </div>
+
+    <div class="well span12">
+        <div>
+            {# Génération du label. #}
+            {{ form_label(form.ligneP, "Ligne 1 :") }}
+
+            {# Affichage des erreurs pour ce champ précis. #}
+            {{ form_errors(form.ligneP) }}
+
+            {# Génération de l'input. #}
+            {{ form_widget(form.ligneP) }}
+        </div>
+        <div>
+            {# Génération du label. #}
+            {{ form_label(form.ligneS, "Ligne 2 :") }}
+
+            {# Affichage des erreurs pour ce champ précis. #}
+            {{ form_errors(form.ligneS) }}
+
+            {# Génération de l'input. #}
+            {{ form_widget(form.ligneS) }}
+        </div>
+        <div>
+            {# Génération du label. #}
+            {{ form_label(form.codepostal, "Code postal :") }}
+
+            {# Affichage des erreurs pour ce champ précis. #}
+            {{ form_errors(form.codepostal) }}
+
+            {# Génération de l'input. #}
+            {{ form_widget(form.codepostal) }}
+        </div>
+        <div>
+            {# Génération du label. #}
+            {{ form_label(form.ville, "Ville :") }}
+
+            {# Affichage des erreurs pour ce champ précis. #}
+            {{ form_errors(form.ville) }}
+
+            {# Génération de l'input. #}
+            {{ form_widget(form.ville) }}
+        </div>
+        <div>
+            {# Génération du label. #}
+            {{ form_label(form.pays, "Pays :") }}
+
+            {# Affichage des erreurs pour ce champ précis. #}
+            {{ form_errors(form.pays) }}
+
+            {# Génération de l'input. #}
+            {{ form_widget(form.pays) }}
+        </div>
+
+    </div>
+</div>
+
+                <div class="well span4" id="socialIcons">
+               <div id="socialIconsList">
+                    <i class="icon-facebook-sign icon-2x" id="facebook"></i>
+                    <i class="icon-google-plus-sign icon-2x" id="googleplus"></i>
+                    <i class="icon-twitter-sign icon-2x" id="twitter"></i>
+                    <i class="icon-sign-blank icon-2x" id="skype"></i>
+                    <i class="icon-sign-blank icon-2x" id="viadeo"></i>
+                    <i class="icon-linkedin-sign icon-2x" id="linkedin"></i>
+               </div>
+               <div id="facebookDiv">
+                    {# Génération du label. #}
+                    <i class="icon-facebook"></i>
+
+                    {# Affichage des erreurs pour ce champ précis. #}
+                    {{ form_errors(form.facebook) }}
+
+                    {# Génération de l'input. #}
+                    {{ form_widget(form.facebook) }}
+                </div>
+                <div id="googleplusDiv">
+                    {# Génération du label. #}
+                    <i class="icon-google-plus"></i>
+
+                    {# Affichage des erreurs pour ce champ précis. #}
+                    {{ form_errors(form.googleplus) }}
+
+                    {# Génération de l'input. #}
+                    {{ form_widget(form.googleplus) }}
+                </div>
+                <div id="twitterDiv">
+                    {# Génération du label. #}
+                    <i class="icon-twitter"></i>
+
+                    {# Affichage des erreurs pour ce champ précis. #}
+                    {{ form_errors(form.twitter) }}
+
+                    {# Génération de l'input. #}
+                    {{ form_widget(form.twitter) }}
+                </div>
+                <div id="skypeDiv">
+                    {# Génération du label. #}
+                    <i class="icon-sign-blank"></i>
+
+                    {# Affichage des erreurs pour ce champ précis. #}
+                    {{ form_errors(form.skype) }}
+
+                    {# Génération de l'input. #}
+                    {{ form_widget(form.skype) }}
+                </div>
+                <div id="viadeoDiv">
+                    {# Génération du label. #}
+                    <i class="icon-sign-blank"></i>
+
+                    {# Affichage des erreurs pour ce champ précis. #}
+                    {{ form_errors(form.viadeo) }}
+
+                    {# Génération de l'input. #}
+                    {{ form_widget(form.viadeo) }}
+               </div>
+               <div id="linkedinDiv">
+                    {# Génération du label. #}
+                    <i class="icon-linkedin"></i>
+
+                    {# Affichage des erreurs pour ce champ précis. #}
+                    {{ form_errors(form.linkedin) }}
+
+                    {# Génération de l'input. #}
+                    {{ form_widget(form.linkedin) }}
+               </div>
+         </div>
+
+    {{form_widget(form) }}
+                    <div id="inputFields">
+                          <input type="submit" class="btn btn-primary" id="ValidatorBtn"/>
+                          <a alt="Retour" class="btn btn-danger" id="ClearAllFields">Effacer les champs</a>
+                    </div>
+</form>
+
+
+{#<form method="post" {{ form_enctype(form) }}>
+    {% form_theme form 'ImaviaFacetProfileBundle::FormContent.html.twig' %}
+    {{form_widget(form) }}
+    <input type="submit" class="btn btn-primary"/>
+</form>#}

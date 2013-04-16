@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<profile>
+    <facette nom="Informations Personelles" description="Informations Personelles">
+        <composant nom="Identite" description="Identité">
+            <attribut nom="civilite" description="Civilité"/>
+            <attribut nom="nom" description="nom"/>
+            <attribut nom="prenom" description="prenom"/>
+            <attribut nom="ddn" description="Date de naissance"/>
+            <attribut nom="photo" description="Photo de l'utilisateur"/>
+             <souscomposant nom="Adresse" description="Adresse Postale">
+                <attribut nom="ligneP" description="Adresse Principale"/>
+                <attribut nom="ligneS" description="Adresse Secondaire"/>
+                <attribut nom="codepostal" description="Code Postal"/>
+                <attribut nom="ville" description="Ville"/>
+                <attribut nom="pays" description="Pays"/>
+           </souscomposant>
+        </composant>
+        <composant nom="autresinfo" description="autres informations">
+            <attribut nom="telephoneP" description="Téléphone principal l'utilisateur"/>
+            <attribut nom="telephoneS" description="Téléphone de secours de l'utilisateur"/>
+        </composant>
+        <composant nom="numerique" description="Identité Numerique de l'utilisateur" >
+            <attribut nom="pseudo" description="Pseudo de l'utilisateur"/>
+            <attribut nom="mail" description="Mail principal de l'utilisateur"/>
+            <attribut nom="mailS" description="Mail secondaire de l'utilisateur"/>
+            <attribut nom="facebook" description="Adresse du profil Facebook"/>
+            <attribut nom="googleplus" description="Adresse du profil Google +"/>
+            <attribut nom="twitter" description="Adresse du profil Twitter"/>
+            <attribut nom="skype" description="Pseudo Skype"/>
+            <attribut nom="viadeo" description="Adresse du profil Viadeo"/>
+            <attribut nom="linkedin" description="Adresse du profil Linkedin"/>
+        </composant>
+   </facette>   
+ </profile>
+ 
+  

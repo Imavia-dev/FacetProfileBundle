@@ -1,0 +1,26 @@
+{% extends "ClarolineCoreBundle:desktop:layout.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block title %}
+    FacetProfileBundle
+{% endblock %}
+
+{% block section_content %}
+<div class="navbar">
+    <div class="navbar-inner">	
+        <h4><i class="icon-group"></i>Menu general du bundle facet profile</h4>
+    </div>
+</div>
+    
+<a href="http://localhost/claroline/app_dev.php/imavia/bench">Bench Profile</a>
+<a href="http://localhost/claroline/app_dev.php/imavia/view">Voir les Profils</a>
+    {% block subsection_content %}
+    {% endblock %}
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+{% endblock %}

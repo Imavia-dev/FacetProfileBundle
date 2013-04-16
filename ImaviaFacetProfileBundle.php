@@ -17,4 +17,8 @@ use Claroline\CoreBundle\Library\PluginBundle;
 
 class ImaviaFacetProfileBundle extends PluginBundle
 {
+    public function getRoutingPrefix()
+    {
+        return "imavia";
+    }
 }

@@ -16,15 +16,19 @@ class FacetRepository extends EntityRepository
         return $resultats;
     }
 
-    public function findByID($id)
+    public function findById($facetId,$name)
     {
-        $qb = $this->createQueryBuilder('f');
-        $qb ->select('f')
-            ->from('ImaviaFacetProfileBundle:Facet', 'f')
-            ->where('f.id=:id')
-            ->setParameter('id', $id);
+        {
+        $sql = "
+            SELECT f
+            FROM Imavia\FacetProfileBundle\Entity\Facet f
+            WHERE f.profile = $facetId
+            AND f.name='". $name . "'"
+        ;
 
-        return $qb->getQuery()->getResult();
+        return $this->_em->createQuery($sql)
+            ->getResult();
+        }
     }
 
     public function findByProfile($idProfil)
@@ -38,15 +42,13 @@ class FacetRepository extends EntityRepository
         return $qb;
     }
 
-    public function getFacetByName($name, $idProfil)
+    public function findByFacetByName($name)
     {
         $qb = $this->createQueryBuilder('f');
         $qb ->select('f')
             ->from('ImaviaFacetProfileBundle:Facet', 'f1')
             ->where('f1.name=:name')
-            ->andWhere('f1.profile=:idprofil')
-            ->setParameter('name', $name)
-            ->setParameter('idprofil', $idProfil);
+            ->setParameter('name', $name);
 
         return $qb->getQuery()->getResult();
     }

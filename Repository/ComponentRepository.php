@@ -7,14 +7,7 @@ use Doctrine\ORM\EntityRepository;
 
 class ComponentRepository extends EntityRepository
 {
-    public function findAll()
-    {
-        $qb = $this->createQueryBuilder('c');
-        $requete = $qb->getQuery();
-        $resultats = $requete->getResult();
 
-        return $resultats;
-    }
 
     public function findByID($id)
     {
@@ -27,15 +20,16 @@ class ComponentRepository extends EntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function findByFacet($idFacet)
+    public function findByFacet($name,array $compIds)
     {
-        $qb = $this->createQueryBuilder('c');
-        $qb ->select('c')
-            ->from('ImaviaFacetProfileBundle:Component', 'c')
-            ->where('c.facet=:id')
-            ->setParameter('id', $idFacet);
+          $em = $this->container->get('doctrine.orm.entity_manager');
+          $sql = "
+            SELECT c 
+            FROM Imavia\FacetProfileBundle\Entity\Component c
+            WHERE c.name='". $name ."' AND c.facet IN (". implode(',', $compIds) . ")";
 
-        return $qb->getQuery()->getResult();
+          return $em -> createQuery($sql)-> getResult();
+
     }
 
     public function findByName($name,$idFacet)

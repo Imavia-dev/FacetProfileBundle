@@ -1,5 +1,93 @@
-{% block content %}
-<em>Hello world<em>
+{% extends "ClarolineCoreBundle:desktop:layout.html.twig" %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type:"text/css" href="{{ asset('bundles/imavia/facetprofile/css/imavia.css') }}"/>
+{% endblock %}
 
+{% block section_content %}
+<div class="navbar">
+    <div class="navbar-inner">	
+        <h4><i class="icon-group"></i>Gestion des profils</h4>
+        <form class="form-horizontal pull-right">
+            <div class="btn-group" data-toggle="buttons-radio">
+                <button type="button" id="usersGrid" class="btn btn-primary active"><i class="icon-th"></i></button>
+                <button type="button" id="usersList" class="btn btn-primary"><i class="icon-list"></i></button>
+            </div>	
+
+            <div class="input-append">
+                <input class="span10" id="appendedInputButton" type="text" required="" placeholder="Rechercher">
+                <button class="btn" id="search" type="submit"><i class="icon-search"></i></button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="imaviaGrid">
+    <div class="border userBlock">
+        <img src="{{asset('bundles/imavia/facetprofile/images/')}}{{photo}}" alt="test" class="img-polaroid userPhoto" />
+        <div class="InfosBlock">
+            <p>{{nom}}</p>
+            <p>{{prenom}}</p>
+            <p>NÃ©(e) le : <span>{{ddn}}</span></p>
+            <div class="divider"></div>
+            <p class="muted">Profil crÃ©e le : <span></span></p>
+            <p class="text-warning">Modifier le : <span></span></p>
+        </div>
+        <div class="btn-group imgBtns">
+            <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
+                Actions
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="#">
+                        <i class="icon-pencil"></i>
+                        Edit
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="icon-eye-open"></i>
+                        View
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="icon-trash"></i>
+                        Delete
+                    </a>
+                </li>
+            </ul>
+        </div>			
+    </div>
+</div>
+<ul id="UserContextMenu" class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+    <li>
+        <a href="#">
+            <i class="icon-pencil"></i>
+            Edit
+        </a>
+    </li>
+    <li>
+        <a href="#">
+            <i class="icon-eye-open"></i>
+            View
+        </a>
+    </li>
+    <li>
+        <a href="#">
+            <i class="icon-trash"></i>
+            Delete
+        </a>
+    </li>
+</ul>
+
+<button id="btnGoUp" class="btn btnMarginRight" type="button"><i class="icon-arrow-up"></i>Remonter en haut de la page</button>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/imavia/facetprofile/js/global.js')}}"></script>
 {% endblock %}

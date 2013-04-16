@@ -16,6 +16,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Sous Niveau d'une Facette 
  * 
  * @Gedmo\Tree(type="nested")
+ * @ORM\Entity(repositoryClass="Imavia\FacetProfileBundle\Repository\ComponentRepository")
  * @ORM\Entity(repositoryClass="Gedmo\Tree\Entity\Repository\NestedTreeRepository")
  * @ORM\Table(name = "imavia_component")
  */

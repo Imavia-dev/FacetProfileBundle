@@ -1,0 +1,19 @@
+{% extends "ClarolineCoreBundle:desktop:layout.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+<link rel="stylesheet" type:"text/css" href="{{ asset('bundles/imaviafacetprofile/css/imavia.css') }}"/>
+<link rel="stylesheet" type:"text/css" href="{{ asset('bundles/imaviafacetprofile/css/datepicker.css') }}"/>
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+{% endblock %}
+
+{% block section_content %}
+        {% include "ImaviaFacetProfileBundle::FormContent.html.twig" %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+          <script src="{{ asset('bundles/imaviafacetprofile/js/global.js')}}"></script>
+          <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>          
+{% endblock %}

@@ -1,0 +1,13 @@
+imavia_bench:
+    resource: "@ImaviaFacetProfileBundle/Controller/BenchController.php"
+    type:     annotation
+imavia_view:
+    path:      /view
+    defaults:  { _controller: ImaviaFacetProfileBundle:ViewProfile:initialize }
+    options:
+        expose: true
+imavia_add:
+    path:      /view/add
+    defaults:  { _controller: ImaviaFacetProfileBundle:ViewProfile:add }
+    options:
+        expose: true

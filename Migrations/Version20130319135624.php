@@ -94,7 +94,7 @@ class Version20130319135624 extends BundleMigration
     {
         $table = $schema->createTable('imavia_attribute');
         $this->addId($table);
-        $table->addColumn('description', 'text');
+        $table->addColumn('description', 'text', array('notnull' => false));
         $table->addColumn('name', 'string', array('length' => 255));
         $table->addColumn('creationdate', 'datetime');
         $table->addColumn('lastmodificationdate', 'datetime');

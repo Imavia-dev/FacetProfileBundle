@@ -1,0 +1,133 @@
+/*Global
+*feuille de style css pour l'affichage global de la page
+*/
+
+html {
+	font-size: 14px;
+}
+
+.top {
+	margin-top: 20px;
+}
+
+.navbar-inner > h4 {
+	display: inline-block;
+	width: auto;
+}
+
+.noMarginLeft {
+	margin-left: 0;
+}
+
+.span12 p {
+	font-size: 80%;
+}
+
+.span12 p > span {
+	font-weight: bold;
+}
+
+address {
+	position: relative;
+	top: 0;
+	left: 0px;
+	width: 125px;
+	padding: 0;
+	display: inline-block;
+	vertical-align: top;
+}
+
+address > strong {
+	font-size: 100%;
+	word-wrap: break-word;
+	white-space: pre-wrap;
+}
+
+.img-polaroid {
+	border-radius : 5px;
+}
+
+.userBlock:hover {
+	cursor: pointer;
+}
+
+.form-horizontal {
+	margin-top: 5px;
+}
+
+.form-horizontal > .btn {
+	margin-top: 0;
+}
+
+.btnMarginRight > i{
+	margin-right: 5px;
+}
+
+.icon-spinner {
+	position: relative;
+	top: 50%;
+	left: 50%;
+	margin-bottom: 20px;
+}
+
+#btnGoUp {
+	position: fixed;
+	top: 5%;
+	right: 5%;
+	z-index: 10000;
+}
+
+.DialogBoxPhoto {
+	display: inline-block;
+}
+
+.DialogBoxInfos {
+	position: relative;
+	top: 0;
+	left: 20px;
+	vertical-align: top;
+	width: 300px;
+	display: inline-block;
+	text-align: right;
+}
+
+.DialogBoxInfos div {
+	height: 30px;
+	width: auto;
+	margin-bottom: 2px;
+}
+
+.DialogBoxInfos div label {
+	padding-top: 5px;
+	padding-left: 5px;
+	margin-right: 10px;
+	display: inline-block;
+	float: left;
+}
+
+.DialogBoxInfos div select {
+	display: inline-block;
+}
+
+label+.inputInlineWrapper{
+	display: inline-block;
+}
+
+label+.inputInlineWrapper .smaller {
+	width: 69px;
+}
+
+div.DialogBoxInfos+div.input-append {
+	margin-top: 5px;
+	margin-left: 5px;
+}
+
+#UserContextMenu, #btnGoUp {
+	display: none;
+}
+
+/*imaviaForm*/
+
+#imaviaForm {
+    padding-top: 10px;
+}

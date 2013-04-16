@@ -1,0 +1,105 @@
+/*Grid
+*feuille de style css pour l'affichage des profils en grille
+*/
+
+.imgWrapper {
+	height: auto;
+	width: 100%;
+	background-color: rgb(255,255,255);
+}
+
+#UserList {
+	width: 100%;
+	height: auto;
+	margin: 0 auto;
+	display: block;
+	text-align:center;
+	padding-bottom: 20px;
+}
+
+div.border {
+    border: 1px solid #CCCCCC;
+    border-radius: 5px 5px 5px 5px;
+    margin-bottom: 5px;
+}
+
+.addPaddingTop {
+	padding-top: 80px;
+}
+
+.userBlock {
+	position: relative;
+	top: -20px;
+	background-color: rgb(240,240,240);
+	width: 200px;
+	height: 115px;
+	padding: 5px;
+	font-size: 80%;
+	display: block;
+	float: left;
+	text-align: left;
+	background-color: #FFFFFF;
+	border: 1px solid #DDDDDD;
+	border-radius: 5px;
+	box-shadow: 0 0 3px 2px #EEEEEE inset, 2px 2px 2px 1px #c2c2c2;
+	margin: 10px;
+}
+
+.userPhoto {
+	width: 30%;
+	height: auto;
+	display: inline-block;
+}
+
+.imgBtns {
+	position: relative;
+	top: 2px;
+	left: 4px;
+}
+i.icon-group {
+	margin-right: 10px;
+}
+
+div.divider {
+  *width: 100%;
+  height: 1px;
+  margin: 4px 2px;
+  *margin: -5px 0 5px;
+  overflow: hidden;
+  background-color: #e5e5e5;
+  border-bottom: 1px solid #ffffff;
+  box-shadow: 0 0 2px 0px #e5e5e5 ;
+}
+
+.navbar-inner {
+	min-height: 15px;
+	height: 40px;
+	padding-right: 10px;
+	border-left: 0px transparent;
+	border-right: 0px transparent;
+	border-top: 0px transparent;
+	border-radius: 5px 5px 0 0;
+}
+
+
+.navbar .btn, .navbar .btn-group {
+    margin-top: 0px;
+}
+
+.InfosBlock {
+	width: 125px;
+	height: 100px;
+	float: right;
+}
+
+.InfosBlock > p:first-child {
+	font-weight: bold;
+}
+
+.InfosBlock > p:first-child+p {
+	font-weight: bold;
+}
+
+.InfosBlock p {
+	margin: 0;
+}
