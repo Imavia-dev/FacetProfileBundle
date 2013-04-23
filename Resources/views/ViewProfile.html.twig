@@ -1,4 +1,4 @@
-{% extends "ClarolineCoreBundle:desktop:layout.html.twig" %}
+{% extends "ClarolineCoreBundle:Desktop:layout.html.twig" %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -12,9 +12,9 @@
               <h4><i class="icon-group"></i>Gestion des profils</h4>
               <form class="form-horizontal pull-right">
                  <!-- Button to trigger modal -->
-         
-                  <a class="btn btnMarginRight" href="{{app.request.requestUri}}/add"><i class="icon-plus-sign"></i>Ajouter</a>
-                 <!-- <a class="btn btnMarginRight" id="ModalOpener"><i class="icon-plus-sign"></i>Ajouter</a>-->
+
+                 <a class="btn btnMarginRight" id="Refresh"><i class="icon-refresh"></i></a>
+                 <a class="btn btnMarginRight" id="ModalOpener"><i class="icon-plus-sign"></i>Ajouter</a>
 
                   <!-- Modal -->
                   <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -27,7 +27,8 @@
              
                       </div>
                       <div class="modal-footer">
-
+                          <button class="btn btn-primary" id="ValidatorBtn">Envoyer</button>
+                          <a alt="Retour" class="btn btn-danger" id="ClearAllFields">Effacer les champs</a>
                       </div>
                   </div>
 
@@ -48,12 +49,16 @@
       </div>
 
       <div class="imaviaGrid">
-          
+      {% if profiles is empty %}
+            <div class=" span6 well offset3">
+                <strong><p class="text-error text-center">Aucun profils dans la base de données !</p></strong>
+            </div>
+      {% endif %}   
       {% for profile in profiles %}    
           
       <div class="border userBlock">
     
-        <img src="{{asset('bundles/imaviafacetprofile/images/')}}{{ profile.photo }}" alt="test" class="img-polaroid userPhoto" />
+        <img src="{{ asset('bundles/imaviafacetprofile/images/userimages/') }}{{ profile.photo }}" alt="test" class="img-polaroid userPhoto" />
         <div class="InfosBlock">
             <p>{{ profile.civilite }}</p>
             <p>{{ profile.nom }}</p>

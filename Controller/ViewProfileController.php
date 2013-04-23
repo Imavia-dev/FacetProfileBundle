@@ -2,9 +2,11 @@
 
 namespace Imavia\FacetProfileBundle\Controller;
 
+// <editor-fold defaultstate="collapsed" desc="Inclusion ">
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -21,20 +23,24 @@ use \Imavia\FacetProfileBundle\ProfileModel\AttributeModel;
 use \Imavia\FacetProfileBundle\ProfileModel;
 use \Imavia\FacetProfileBundle\Form\ProfileCreationType;
 
-
-
 use Imavia\FacetProfileBundle\Tools\DebugClass;
+
+//</editor-fold>
 
 class ViewProfileController extends Controller
 {
     private $document ;
     private $attributes ;
+
     public function __construct()
     {
         $this->document = new \DOMDocument();
         $this->debug = new DebugClass();
         $this->debug->setAfficheDebug(false);
+
     }
+
+    // <editor-fold defaultstate="collapsed" desc="Methode du Controller ">
 
     /** methode de la route "imavaia_view qui permet d'acceder à la visualisation
      * des profils
@@ -123,10 +129,10 @@ class ViewProfileController extends Controller
                     Case 'photo' :
                         $value = $this->getValueFromAttribute($attribute);
 
-                        if (strlen($value) > 1) {
+                        if (is_object($value) == true) {
                             $attrValue['photo'] = $value->getValue();
                         } else {
-                            $attrValue['photo'] = 'default.png';
+                             $attrValue['photo'] = '../default.png';
                         }
 
                         break;
@@ -142,6 +148,318 @@ class ViewProfileController extends Controller
         );
     }
 
+    /** methode de la route "imavaia_add qui permet d'ajouter un nouveau 
+     * profile
+     * 
+     * @author JV SF
+     * 
+     */
+    public function addAction()
+    {
+
+        /* Attribute Model représente la Classe contenant tous les attributs
+         * à creer lors de la création d'un profil
+         */
+        $request = $this->get('request');
+
+        $attributeM = new AttributeModel();
+        $form = $this->createForm(new ProfileCreationType, $attributeM);
+
+        $response = new Response();
+
+        if ($request->getMethod() == 'POST') {
+               $form->bind($request);
+            if ($form->isValid()) {
+
+                $path = $this->get('kernel')
+                            ->getBundle('ImaviaFacetProfileBundle')
+                            ->getPath();
+                //Pour traiter le cas il n'y a pas de photos à uploader
+                if ($form['photo']->getData() != null) {
+                    $newimageName = $this->handlePhoto($form);
+                    if (strlen($newimageName) > 0) {
+                        $attributeM->setPhoto($newimageName);
+                    }
+                }
+
+                $this->CreateProfileFromModel($path . '/ProfileModel/ProfileModel.xml');
+                foreach ($this->attributes as $attribute) {
+                    // Reupéperer dans un Tableau par reflexion les propriètés
+                    // de la classe AttributeModel
+                    $reflection = new \ReflectionClass($attributeM);
+                    $proprietes   = $reflection->getProperties();
+
+                    // Pour chaque proprièté verifier qu'il existe une egalité
+                    // avec le nom des attributs
+                    foreach ($proprietes as $propriete) {
+                        if ($propriete->getName() == $attribute->getName()) {
+                            // En cas D'egalité creer une attributevalue
+                            // directement reliée à l'attribut par son ID
+                            $valeur = $this->instantiateElement("valeur");
+                            // Creation du descripteur de la valeur
+                            $descriptor = $this
+                            ->createValueDescriptor($attribute, $attributeM);
+                            // Faire persister cette valeur dans la base de donnée
+                            if (isset($descriptor['valeur'])) {
+                                $this
+                                ->createElementProfile(
+                                    $descriptor,
+                                    $valeur,
+                                    $attribute,
+                                    "valeur"
+                                );
+                            }
+                            break;
+                        }
+                    }
+                }
+                $response->setContent('Formulaire Valide');
+
+                return $response;
+
+            } else {
+
+                return $this->render(
+                    'ImaviaFacetProfileBundle::AddProfile.html.twig',
+                    array('form' => $form->createView())
+                );
+
+           }
+
+        } else {
+            return $this->render(
+                'ImaviaFacetProfileBundle::AddProfile.html.twig',
+                array('form' => $form->createView())
+            );
+        }
+    }
+
+    // </editor-fold>
+
+    // <editor-fold defaultstate="collapsed" desc="Outils Photos ">
+
+     /*
+     * Gestion de l'upload de photo
+     * @author JV SF
+     */
+    public function handlePhoto($form)
+    {
+
+        // On tranforme un nombre pris au hasard entre 1 et 1 000 000
+        // en hexadecimal
+        $hexnbr = $this->decToHex(\rand(1, 1000000));
+
+        // On tranforme le texte du pseudo unique et obligatoire
+        // en hexadecimal
+        $hexpseudo = $this->strToHex($form['pseudo']->getData());
+
+        // On recupere le chemin ou sont stockés les images des profiles
+        // Pour l'instant dans le repertoire Userimages à discuter ultérieurement
+        $cheminPhoto = $this->get('kernel')->getRootDir() .
+            '/../web/bundles/imaviafacetprofile/images/userimages/';
+
+        //Copie de la Photo pour retraitement futur en fonction de son type Mime
+        // PNG ou JPEG
+        $uploadedImage = $this->initializeImage($form);
+
+        if ($uploadedImage != null) {
+            //recuperation de la taille actuelle de l'image
+            $imageWorkingCopySize = getimagesize($form['photo']->getData());
+
+            $imageLayer = $this->resizeImage(
+                $uploadedImage,
+                $imageWorkingCopySize
+            );
+
+            $imageName = $this->saveImage(
+                $imageLayer,
+                $form['photo']->getData()->getMimeType(),
+                $hexnbr . $hexpseudo,
+                $cheminPhoto,
+                100
+            );
+        }
+        //Retour du nom de la nouvelle image créee
+        return  $imageName ;
+
+    }
+    /**
+     * Transformation d'un text en hexadecimal
+     * @param type $texte le texte à tranformer en hexa
+     * @return $hex La chaine transformée en hexadécimale
+     */
+
+    public function strToHex($texte)
+    {
+        $hex = '';
+        $longueurChaine = strlen($texte);
+        for ($i = 0; $i < $longueurChaine; $i++) {
+            $hex .= dechex(ord($texte[$i]));
+        }
+
+        return $hex;
+    }
+
+    /**
+     * Transformation d'un nombre en hexadecimal
+     * @param int $nombre le texte à tranformer en hexa
+     * @return $hex La chaine transformée en hexadécimale
+     */
+    public function decToHex($nombre)
+    {
+        $hex = dechex($nombre);
+
+        return $hex;
+    }
+
+    /* Fonction pour creer une copie de l'image uploader en vue
+    * d'un retraitement
+    * @param form : Correspondant au formulaire posté lors du submit
+    * @return Image : Image representant une copie en memeoire du fichier
+    * uploadé en fonction de son type mime
+    */
+
+    public function initializeImage($form)
+    {
+
+        switch ($form['photo']->getData()->getMimeType()) {
+            //JPEG
+            Case "image/jpeg" :
+                   $uploadedImage = imagecreatefromjpeg($form['photo']->getData());
+            break;
+
+            // JPEG : Pour internet explorer qui retourne un mauvais mime type
+            Case "image/pjpeg" :
+                   $uploadedImage = imagecreatefromjpeg($form['photo']->getData());
+            break;
+
+            //PNG
+            Case "image/png" :
+                  $uploadedImage = imagecreatefrompng($form['photo']->getData());
+            break;
+            // PNG Internet explorer tous pourri
+            Case "image/x-png" :
+                  $uploadedImage = imagecreatefrompng($form['photo']->getData());
+            break;
+
+            default:
+                 $uploadedImage = null;
+        }
+
+        return $uploadedImage;
+
+    }
+
+     /**
+     * Fonction qui calcule le coefficient de redimentionnement de l'image en
+     * fonction de son sens
+     * 
+     * @param $imageWorkingCopy : Copie de l'image uploadé 
+     * @return Un calque de l'image redimensionné
+     */
+
+
+    public function resizeImage($imageWorkingCopy, $imageWorkingCopySize)
+    {
+        $size = $this
+               ->calculateRatio(
+                   $imageWorkingCopySize[0],
+                   $imageWorkingCopySize[1]
+               );
+
+        $imageLayer = imagecreatetruecolor($size['Largeur'], $size['Hauteur']);
+
+        imagealphablending($imageLayer, false);
+        imagesavealpha($imageLayer, true);
+        $white = imagecolorallocate($imageLayer, 255, 255, 255);
+        imagefill($imageLayer, 0, 0, $white);
+        imagecolortransparent($imageLayer, $white);
+
+        imagecopyresampled(
+            $imageLayer,
+            $imageWorkingCopy,
+            0, 0, 0, 0,
+            $size['Largeur'],
+            $size['Hauteur'],
+            $imageWorkingCopySize[0],
+            $imageWorkingCopySize[1]
+        );
+
+        // Renommage et deplacement dans le web public
+        // Nom de l'image : concatenation des pseudo et nombre en transformés
+        // en hexadecimal
+
+        return $imageLayer;
+   }
+
+     /**
+    * Fonction Permettant de sauvegarder le fichier image retraité
+    * @param  $imageToSave : Imave a sauver
+    * @param  $mimeType : Type Mime du Fichier Uploadé
+    * @param  $fileName : Nom du fichier sans extension
+    * @param  $location : Chemin où l'on dpoit enregistré l'image
+    * @param  $quality : Qualité de l'enregistrement 
+    */
+    public function saveImage($imageToSave, $mimeType, $fileName, $location, $quality)
+    {
+
+        switch ($mimeType) {
+            //JPEG
+            Case "image/jpeg" :
+                imagejpeg($imageToSave, $location.$fileName . '.jpeg', $quality);
+                $ext = '.jpeg';
+            break;
+
+            // JPEG : Pour internet explorer qui retourne un mauvais mime type
+            Case "image/pjpeg" :
+                imagejpeg($imageToSave, $location.$fileName . '.jpeg', $quality);
+                $ext = '.jpeg';
+            break;
+
+            //PNG
+            Case "image/png" :
+                imagepng($imageToSave, $location.$fileName . '.png');
+                $ext = '.png';
+            break;
+            // PNG  Pour internet explorer qui retourne un mauvais mime type
+            Case "image/x-png" :
+                imagepng($imageToSave, $location.$fileName . '.png');
+                $ext = '.png';
+            break;
+
+        }
+         // echo("Nom de l'image de la fonction Save image" .$fileName.$ext );
+         return $fileName.$ext ;
+   }
+
+    /**
+     * Fonction pour calculer le ratio de redimentionnement de l'image 
+     * @param int $width : Hauteur de l'image actuelle
+     * @param int $height : Largeur de l'image actuelle 
+     * @return int tableau associatif avec Hauteur et largeur redimentionnée
+     */
+    public function calculateRatio($width,$height)
+    {
+        if ($width <= $height) {
+            $wantedWidth = 75;
+            $wantedHeight = (($height * ($wantedWidth * 100) / $width) / 100);
+        } else if ($width > $height) {
+            $wantedHeight = 100;
+            $wantedWidth  = (($width * ($wantedHeight * 100) / $height) / 100);
+        }
+        $size = array(
+               'Hauteur' => $wantedHeight,
+               'Largeur' => $wantedWidth
+
+        );
+
+        return $size;
+       }
+     //</editor-fold>
+
+    // <editor-fold defaultstate="collapsed" desc="Outils Creation Profile ">
+
+
     public function getValueFromAttribute ($attribute)
     {
         $em = $this->container->get('doctrine.orm.entity_manager');
@@ -155,61 +473,6 @@ class ViewProfileController extends Controller
         }
     }
 
-      /** methode de la route "imavaia_add qui permet d'ajouter un nouveau 
-     * profile
-     * 
-     * @author JV SF
-     * 
-     */
-
-    public function addAction()
-    {
-
-        /* Attribute Model représente la Classe contenant tous les attributs
-         * à creer lors de la création d'un profil
-         */
-        $attributeM = new AttributeModel();
-
-        $form = $this->createForm(new ProfileCreationType, $attributeM);
-
-        $request = $this->get('request');
-
-        if ($request->getMethod() == 'POST') {
-            $form->bindRequest($request);
-
-            if ($form->isValid()) {
-                $path = $this->get('kernel')->getBundle('ImaviaFacetProfileBundle')->getPath();
-                $this->CreateProfileFromModel($path . '/ProfileModel/ProfileModel.xml');
-
-                foreach ($this->attributes as $attribute) {
-                    // Reupéperer dans un Tableau par reflexion les propriètés de la classe AttributeModel
-                    $reflection = new \ReflectionClass($attributeM);
-                    $proprietes   = $reflection->getProperties();
-
-                    // Pour chaque proprièté verifier qu'il existe une egalité avec le nom des attributs
-                    foreach ($proprietes as $propriete) {
-                        if ($propriete->getName() == $attribute->getName()) {
-                            // En cas D'egalité creer une attributevalue directement reliée à l'attribut par son ID
-                            $valeur = $this->instantiateElement("valeur");
-                            // Creation du descripteur de la valeur
-                            $descriptor = $this->createValueDescriptor($attribute, $attributeM);
-                            // Faire persister cette valeur dans la base de donnée
-                            if (isset($descriptor['valeur'])) {
-                                $this->createElementProfile($descriptor, $valeur, $attribute, "valeur");
-                            }
-                            break;
-                        }
-                    }
-                }
-                $route = $this->generateUrl('imavia_view');
-
-                return $this->redirect($route);
-            }
-        }
-
-        return $this->render('ImaviaFacetProfileBundle::AddProfile.html.twig', array('form' => $form->createView()));
-    }
-
     /**
      * Fonction Permettant la création d'un descripteur de Valeur
      * 
@@ -217,7 +480,7 @@ class ViewProfileController extends Controller
      * @param $modelClassvalue : Reflexion class pour executer la methode get +
      * le nom de l'attribut 
      * @return $descriptor : Tableau contenant un descriptif d'une valeur 
-     * d'attribut   
+     * d'attribut
      * @author JV SF 
      */
     public function createValueDescriptor($attributeElement,$modelClassValue)
@@ -235,17 +498,11 @@ class ViewProfileController extends Controller
         return $descriptor;
     }
 
-     /** Creer un profil depuis un fichier xml de modèle
-     * Fonction qui peremet de creer les Facets Components et Attribute d'un profil
-     * Automatiquement depuis un fichier XMl
-     * @param string $url Url de location du modele de profile
-     */
-
     /**
      * Fonction Permettant la création d'un descripteur d'un element de profile
      * @param $xmlNode : Noeud Parent au descripteur 
      * @return $descriptor : Tableau contenant un descriptif d'un element du
-     * profile   
+     * profile
      * @author JV SF 
      */
 
@@ -266,6 +523,11 @@ class ViewProfileController extends Controller
         return $descriptor;
     }
 
+    /** Creer un profil depuis un fichier xml de modèle
+    * Fonction qui peremet de creer les Facets Components et Attribute d'un profil
+    * Automatiquement depuis un fichier XMl
+    * @param string $url Url de location du modele de profile
+    */
     public function createProfileFromModel($url)
     {
         //TODO Create Xml Schema
@@ -437,15 +699,30 @@ class ViewProfileController extends Controller
 
             Case 'valeur' :
                 $element->SetAttribute($elementParent->getId());
-                if (is_object($elementDescriptors['valeur'])) {
-                    // On considere ici que si la valeur n'est pas une string
-                    // Alors il s'agit d'une date
-                    $valeur = date_format($elementDescriptors['valeur'], 'd/m/Y');
-                } else {
-                    $valeur = $elementDescriptors['valeur'];
 
+                if (is_string($elementDescriptors['valeur']) == true) {
+                    $valeur = $elementDescriptors['valeur'];
+                    $element->SetValue($valeur);
                 }
-                $element->SetValue($valeur);
+
+                if (is_object($elementDescriptors['valeur']) == true) {
+                    $objectValue = ($elementDescriptors['valeur']);
+                    $className = get_class($objectValue);
+
+                    switch ($className) {
+                        case 'DateTime':
+                            $valeur = date_format(
+                                $elementDescriptors['valeur'], 'd/m/Y'
+                            );
+                            $element->SetValue($valeur);
+                        break;
+
+                        case 'Symfony\Component\HttpFoundation\File\UploadedFile':
+                            $valeur = $elementDescriptors['valeur'];
+                            $element->SetValue($valeur);
+                        break;
+                  }
+               }
                 if (isset($elementDescriptors['dateEval'])) {
                     $element->SetEvaluationDate($elementDescriptors['dateEval']);
                 }
@@ -461,4 +738,5 @@ class ViewProfileController extends Controller
 
         return $element ;
     }
+      // </editor-fold >
 }

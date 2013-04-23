@@ -57,6 +57,8 @@
 
             {# Génération de l'input. #}
             {{ form_widget(form.mailsecours) }}
+            
+            <i class="icon-minus-sign inputShow"></i>            
          </div>
         <div class="span12">
           {# Génération du label. #}
@@ -81,6 +83,8 @@
 
             {# Génération de l'input. #}
             {{ form_widget(form.telephoneS) }}
+            
+            <i class="icon-minus-sign inputShow"></i>                
         </div>
     </div>
 <div class="span4">
@@ -185,12 +189,12 @@
 
                 <div class="well span4" id="socialIcons">
                <div id="socialIconsList">
-                    <i class="icon-facebook-sign icon-2x" id="facebook"></i>
-                    <i class="icon-google-plus-sign icon-2x" id="googleplus"></i>
-                    <i class="icon-twitter-sign icon-2x" id="twitter"></i>
-                    <i class="icon-sign-blank icon-2x" id="skype"></i>
-                    <i class="icon-sign-blank icon-2x" id="viadeo"></i>
-                    <i class="icon-linkedin-sign icon-2x" id="linkedin"></i>
+                    <img src="{{ asset('bundles/imaviafacetprofile/images/socialIconFacebook.png') }}" alt="icône Facebook" id="facebook"/>
+                    <img src="{{ asset('bundles/imaviafacetprofile/images/socialIconGoogle+.png') }}" alt="icône Google+" id="googleplus"/>
+                    <img src="{{ asset('bundles/imaviafacetprofile/images/socialIconTwitter.png') }}" alt="icône Twitter" id="twitter"/>
+                    <img src="{{ asset('bundles/imaviafacetprofile/images/socialIconSkype.png') }}" alt="icône Skype" id="skype"/>
+                    <img src="{{ asset('bundles/imaviafacetprofile/images/socialIconViadeo.png') }}" alt="icône Viadeo" id="viadeo"/>
+                    <img src="{{ asset('bundles/imaviafacetprofile/images/socialIconLinkedIn.png') }}" alt="icône LinkedIn" id="linkedin"/>
                </div>
                <div id="facebookDiv">
                     {# Génération du label. #}
@@ -254,11 +258,10 @@
                </div>
          </div>
 
-    {{form_widget(form) }}
-                    <div id="inputFields">
-                          <input type="submit" class="btn btn-primary" id="ValidatorBtn"/>
-                          <a alt="Retour" class="btn btn-danger" id="ClearAllFields">Effacer les champs</a>
-                    </div>
+    {{form_rest(form) }}
+
+
+
 </form>
 
 

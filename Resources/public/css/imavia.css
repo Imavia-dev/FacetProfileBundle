@@ -1,4 +1,12 @@
 /*global*/
+.test {  /* style the transfer element */
+			border: #AAA 2px dashed;
+		}
+
+.section-content .navbar {
+    margin-bottom: 20px;
+}
+
 .navbar-inner > h4 {
 	display: inline-block;
 	width: auto;
@@ -312,4 +320,67 @@
 
 #imavia_facetprofilebundle_profilecreationtype_ddn select {
     width: auto;
+}
+
+h4 + a > img {
+    display: inline-block;
+    margin-top: 5px;
+    margin-right: 5px;
+    width: 106px;
+    height: 27px;
+}
+
+#logoFormagraph {
+    position: relative;
+    top: 25px;
+    left: 5%;
+    vertical-align: top;
+}
+
+#imaviaGeneral #btnList {
+    position: relative;
+    left: 15%;
+    display: inline-block;
+    width: auto;
+}
+
+#imaviaGeneral #btnList a {
+    font-weight: bold;
+    display: block;
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+#imaviaGeneral a > i[class*="icon"] {
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+#imaviaGeneral {
+    min-height: 200px;
+    padding-top: 50px
+}
+
+a[class*="disabled"]:hover {
+    opacity: 0.2;
+}
+
+a[class*="disabled"] + span {
+    display: none;
+    position: relative;
+    top: -50px;
+    left: 250px;
+    color: rgb(255,0,0);
+    font-weight: bold;
+    background-color: #c2c2c2;
+    border-radius: 5px;
+    border: 1px dashed #313131;
+    padding: 5px;
+    margin-bottom: -32px;
+    width: 175px;
+    text-align: center;
+}
+
+a[class*="disabled"]:hover + span {
+    display: block;
 }

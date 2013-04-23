@@ -61,7 +61,13 @@ class AttributeModel
 
     private $ddn;
 
-
+    /**
+     * @assert\File ( 
+     *    maxSize="1M",
+     *    mimeTypes= {"image/jpeg","image/pjpeg", "image/png", "image/x-png"}, 
+     *    mimeTypesMessage = "Seul les fichiers jpeg et png sont autorisés",
+     *    uploadIniSizeErrorMessage= "La taille de la photo ne doit pas exceder {{ limit }}")
+     */
 
     private $photo;
 
