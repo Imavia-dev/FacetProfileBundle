@@ -1,11 +1,11 @@
 <?php
 /**
  * Imavia Bundle Object AttributeValue
- *    
+ *
  * @author Jerome Varini <jerome.varini@imavia.fr>
  *         Fricker Sebastien <sebastien.fricker@imavia.fr>
  * @link   http://www.imavia.fr Site web Imavia
- * 
+ *
  */
 namespace Imavia\FacetProfileBundle\Entity;
 
@@ -13,9 +13,9 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Classe Abstraite representant un element du profile
- * 
+ *
  * @ORM\Entity(repositoryClass="Imavia\FacetProfileBundle\Repository\AttributeValueRepository")
- * @ORM\Table(name = "imavia_attributeValue")
+ * @ORM\Table(name = "imavia_attributevalue")
  */
 class AttributeValue extends ProfileView
 {
@@ -57,14 +57,14 @@ class AttributeValue extends ProfileView
     }
 
     /**
-     * 
+     *
      */
     public function getEvaluationDate()
     {
         return $this->evaluationDate;
     }
     /**
-     * 
+     *
      */
     public function setEvaluationDate($evaluationDate)
     {
@@ -72,14 +72,14 @@ class AttributeValue extends ProfileView
     }
 
     /**
-     * 
+     *
      */
     public function getScale()
     {
         return $this->scale;
     }
     /**
-     * 
+     *
      */
     public function setScale($scale)
     {

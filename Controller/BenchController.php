@@ -135,7 +135,7 @@ class BenchController extends Controller
 
         switch ($elementType) {
             case 1:
-                $element = new facet();
+                $element = new Facet();
                 break;
 
             Case 2 :
