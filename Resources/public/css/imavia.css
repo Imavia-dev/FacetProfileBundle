@@ -14,7 +14,7 @@
 }
 
 .navbar-inner > h4 > i {
-    padding-right: 10px;    
+    padding-right: 10px;
 }
 
 .navbar-inner {
@@ -201,12 +201,12 @@
 
 #myModal {
     display: none;
-    width: 950px;
+    width: 950px; /* non portable ! */
 }
 
 #myModal .modal-body {
-    height: 600px;
-    max-height: 800px;    
+    height: 600px; /* non portable ! */
+    max-height: 800px; /* non portable ! */
 }
 
 #myModal i+input {
@@ -221,7 +221,7 @@
 }
 
 #socialIcons div#socialIconsList {
-    display: inline-block;        
+    display: inline-block;
 }
 
 /*hidden input*/
@@ -248,19 +248,19 @@
 }
 
 .icon-plus-sign:hover {
-    cursor: pointer;    
+    cursor: pointer;
     color: lightgreen;
 }
 
 .icon-minus:hover {
     cursor: pointer;
-    color: red;    
+    color: red;
 }
 
 
 #bloc1 {
     border-radius: 5px 0px 0px 5px;
-    height: 795px;
+    height: 795px; /* non portable ! */
     position: relative;
     top: -10px;
     left: -10px;
