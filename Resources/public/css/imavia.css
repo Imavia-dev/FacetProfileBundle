@@ -201,7 +201,7 @@
 
 #myModal {
     display: none;
-    /*width: 950px;*/
+    width: 950px; /* non portable ! */
 }
 
 #myModal .modal-body {
