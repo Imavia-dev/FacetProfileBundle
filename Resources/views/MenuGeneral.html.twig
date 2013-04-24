@@ -1,8 +1,8 @@
-{% extends "ClarolineCoreBundle:desktop:layout.html.twig" %}
+{% extends "ClarolineCoreBundle:Desktop:layout.html.twig" %}
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" type:"text/css" href="{{ asset('bundles/imaviafacetprofile/css/imavia.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/imaviafacetprofile/css/imavia.css') }}"/>
 {% endblock %}
 
 {% block title %}
@@ -11,7 +11,7 @@
 
 {% block section_content %}
     <div class="navbar">
-              <div class="navbar-inner">	
+              <div class="navbar-inner">
                   <h4><i class="icon-group"></i>Menu général Imavia</h4>
                   <a href="http://www.imavia.fr" alt="lien vers le site imavia.fr" target="_blank"><img src="{{ asset('bundles/imaviafacetprofile/images/imavia.png')}}" class="pull-right"/></a>
               </div>
@@ -20,7 +20,7 @@
               <a href="http://www.formagraph.com" alt="lien vers le site de Formagraph" target="_blank" id="logoFormagraph"><img src="{{ asset('bundles/imaviafacetprofile/images/logo formagraph.png')}}"/></a>
 
               <div id="btnList">
-                <a href="http://localhost/claroline/app_dev.php/imavia/view" class="btn btn-primary"><i class="icon-group icon-2x"></i> Gestion des Profils</a>
+                <a href="{{ path('imavia_view') }}" class="btn btn-primary"><i class="icon-group icon-2x"></i> Gestion des Profils</a>
                 <a class="btn btn-disabled"><i class="icon-bar-chart icon-2x"></i> Visualisation du parcours</a>
                 <span>En cours de developpement !</span>
                 <a class="btn btn-disabled"><i class="icon-sign-blank icon-2x"></i> bouton 3</a>

@@ -7,7 +7,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 
 /**
- * Injection dependance class 
+ * Injection dependance class
  */
 class ImaviaFacetProfileExtension extends Extension
 {
@@ -18,6 +18,6 @@ class ImaviaFacetProfileExtension extends Extension
     {
         $locator = new FileLocator(__DIR__ . '/../Resources/config/services');
         $loader = new YamlFileLoader($container, $locator);
-        $loader->load('Listeners.yml');
+        $loader->load('listeners.yml');
     }
 }

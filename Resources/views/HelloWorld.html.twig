@@ -1,19 +1,19 @@
-{% extends "ClarolineCoreBundle:desktop:layout.html.twig" %}
+{% extends "ClarolineCoreBundle:Desktop:layout.html.twig" %}
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" type:"text/css" href="{{ asset('bundles/imavia/facetprofile/css/imavia.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/imavia/facetprofile/css/imavia.css') }}"/>
 {% endblock %}
 
 {% block section_content %}
 <div class="navbar">
-    <div class="navbar-inner">	
+    <div class="navbar-inner">
         <h4><i class="icon-group"></i>Gestion des profils</h4>
         <form class="form-horizontal pull-right">
             <div class="btn-group" data-toggle="buttons-radio">
                 <button type="button" id="usersGrid" class="btn btn-primary active"><i class="icon-th"></i></button>
                 <button type="button" id="usersList" class="btn btn-primary"><i class="icon-list"></i></button>
-            </div>	
+            </div>
 
             <div class="input-append">
                 <input class="span10" id="appendedInputButton" type="text" required="" placeholder="Rechercher">
@@ -59,7 +59,7 @@
                     </a>
                 </li>
             </ul>
-        </div>			
+        </div>
     </div>
 </div>
 <ul id="UserContextMenu" class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
